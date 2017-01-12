@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 
+
 @Configuration
 @ComponentScan(basePackages="com.spa")
 public class AppContextConfig {
@@ -24,7 +25,7 @@ public class AppContextConfig {
 		dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
 		dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:XE");
 		dataSource.setUsername("DBSPA");
-		dataSource.setPassword("pass");
+		dataSource.setPassword("password");
 		
 		return dataSource;
 		

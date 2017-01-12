@@ -52,8 +52,7 @@
     
   </dependencies>
   <build>
-  	
-    <pluginManagement>
+  	<pluginManagement>
   <plugins>
   <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -70,7 +69,7 @@
                     <version>2.4</version>
                     <configuration>
                         <warSourceDirectory>src/main/webapp</warSourceDirectory>
-                        <warName>ve</warName>
+                        <warName>spa</warName>
                         <failOnMissingWebXml>false</failOnMissingWebXml>
                     </configuration>
                 </plugin>
@@ -80,7 +79,7 @@
   
   
   </pluginManagement>
-  
+   
     <finalName>sprojectRest</finalName>
   </build>
 </project>
