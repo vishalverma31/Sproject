@@ -18,7 +18,7 @@
         function Login(username, password, callback) {
 
            console.log('inside Login method inside service')
-            $http.post('http://localhost:9186/sprojectRest/user/authenticate', { username: username, password: password })
+            $http.post('http://localhost:8186/sprojectRest/user/authenticate', { username: username, password: password })
                 .then(function () {
                 	var response={success:true};
                     callback(response);
