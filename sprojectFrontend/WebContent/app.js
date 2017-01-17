@@ -26,6 +26,21 @@ console.log('inside app.js')
                 templateUrl: 'register/register.view.html',
                 controllerAs: 'vm'
             })
+            .when('/createblog', {
+                controller: 'BlogController',
+                templateUrl: 'blog/createblog.view.html',
+                controllerAs: 'vm'
+            })
+            .when('/listblog', {
+                controller: 'BlogController',
+                templateUrl: 'blog/listblog.view.html',
+                controllerAs: 'vm'
+            })
+            .when('/viewblog', {
+                controller: 'BlogController',
+                templateUrl: 'blog/showblog.view.html',
+                controllerAs: 'vm'
+            })
 
             .otherwise({ redirectTo: '/login' });
     }
@@ -40,7 +55,7 @@ console.log('inside app.js')
 
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
             // redirect to login page if not logged in and trying to access a restricted page
-            var restrictedPage = $.inArray($location.path(), ['/login', '/register']) === -1;
+            var restrictedPage = $.inArray($location.path(), ['/login', '/register','/listblog','/viewblog']) === -1;
             console.log('Restricted Page:'+restrictedPage);
             
             var loggedIn = $rootScope.currentUser.username;
