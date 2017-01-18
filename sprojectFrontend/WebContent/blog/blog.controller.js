@@ -104,3 +104,5 @@
            	    	      $scope.myForm.$setPristine();
         };
 }
+
+})();

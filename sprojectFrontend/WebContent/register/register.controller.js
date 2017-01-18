@@ -18,11 +18,13 @@
                     if (response.success) {
                         FlashService.Success('Registration successful', true);
                         $location.path('/login');
-                    } else {
+                      } 
+                    else {
                         FlashService.Error(response.message);
                         vm.dataLoading = false;
                     }
-                });
+                  }
+               );
         }
     }
 

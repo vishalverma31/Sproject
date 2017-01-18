@@ -7,7 +7,7 @@
 
     BlogService.$inject = ['$http','$q','$rootScope'];
     function BlogService($http) {
-        var BASE_URL='http://localhost:8186/sprojectRest'
+        var BASE_URL='http://localhost:8186/sprojectRest';
         var service = {};
 
         service.fetchAllBlogs = fetchAllBlogs;
@@ -21,7 +21,7 @@
         function fetchAllBlogs() {
             return $http.get(BASE_URL+'/blog/')
               .then(
-                        function(response){
+                      function(response){
                            return response.data;
                         },
                       function(errResponse){
@@ -34,7 +34,7 @@
            function createBlog(blog) {
             return $http.post(BASE_URL+'/blog/', blog)
               .then(
-                        function(response){
+                      function(response){
                            return response.data;
                         },
                       function(errResponse){
@@ -47,7 +47,7 @@
            function deleteBlog(id) {
             return $http.delete(BASE_URL+'/blog/'+id)
               .then(
-                        function(response){
+                      function(response){
                            return response.data;
                         },
                       function(errResponse){
@@ -60,13 +60,16 @@
            function getBlog(id) {
             return $http.get(BASE_URL+'/blog/'+id)
               .then(
-                        function(response){
+                      function(response){
                            return response.data;
                         },
                       function(errResponse){
                            console.error('Error while getting the Blog');
                            return $q.reject(errResponse);
                        }
-                 );
+                   );
             }
 
+}
+
+})();

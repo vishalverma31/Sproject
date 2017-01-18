@@ -8,7 +8,7 @@
     UserService.$inject = ['$http'];
     function UserService($http) {
         var service = {};
-
+        var BASE_URL='http://localhost:8186/sprojectRest';
         service.GetAll = GetAll;
         service.GetById = GetById;
         service.GetByUsername = GetByUsername;
@@ -19,27 +19,51 @@
         return service;
 
         function GetAll() {
-            return $http.get('http://localhost:8186/sprojectRest/user/').then(handleSuccess, handleError('Error getting all users'));
+            return $http.get(BASE_URL+'/user/')
+            .then(
+            	   handleSuccess, 
+            	   handleError('Error getting all users')
+            	 );
         }
 
         function GetById(id) {
-            return $http.get('http://localhost:8186/sprojectRest/user/' + id).then(handleSuccess, handleError('Error getting user by id'));
+            return $http.get(BASE_URL+'/user/'+ id)
+            .then(
+            		handleSuccess, 
+            		handleError('Error getting user by id')
+            	 );
         }
 
         function GetByUsername(username) {
-            return $http.get('http://localhost:8186/sprojectRest/user/' + username).then(handleSuccess, handleError('Error getting user by username'));
+            return $http.get(BASE_URL+'/user/' + username)
+            .then(
+            		handleSuccess, 
+            		handleError('Error getting user by username')
+            	 );
         }
 
         function Create(user) {
-            return $http.post('http://localhost:8186/sprojectRest/user/', user).then(createSuccess, handleError('Error creating user'));
+            return $http.post(BASE_URL+'/user/', user)
+            .then(
+            		createSuccess,
+            		handleError('Error creating user')
+            	 );
         }
 
         function Update(user) {
-            return $http.put('http://localhost:8186/sprojectRest/user/' + user.id, user).then(handleSuccess, handleError('Error updating user'));
+            return $http.put(BASE_URL+'/user/' + user.id, user)
+            .then(
+            		handleSuccess,
+            		handleError('Error updating user')
+            	 );
         }
 
         function Delete(id) {
-            return $http.delete('http://localhost:8186/sprojectRest/user/' + id).then(handleSuccess, handleError('Error deleting user'));
+            return $http.delete(BASE_URL+'/user/' + id)
+            .then(
+            		handleSuccess, 
+            		handleError('Error deleting user')
+            	 );
         }
 
         // private functions
