@@ -2,6 +2,8 @@ package com.spa.sprojectRest.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.spa.sprojectBackend.DAO.JobDAO;
 import com.spa.sprojectBackend.DAO.UserDAO;
 import com.spa.sprojectBackend.model.Job;
+import com.spa.sprojectBackend.model.JobApplication;
 
 @RestController
 public class JobRestController {
@@ -58,5 +61,22 @@ public class JobRestController {
 	         
 	        return new ResponseEntity<Void>(HttpStatus.CREATED);
 	    }
+	
+	//---------------------------Applying for JOB-------------------------------------
+		@PostMapping(value = "/applyForJob/{jobId}")
+	    public ResponseEntity<Job> applyForJob(@PathVariable("jobId") long jobId,HttpSession session) 
+		{
+		  long loggedInUserId=(Long)session.getAttribute("loggedInUserId");
+		  
+		  JobApplication jobApplication=new JobApplication();
+		  jobApplication.setJob(jobDAO.getJobById(jobId));
+		  jobApplication.setStatus("New");
+		  jobApplication.setDateApplied(new java.util.Date());
+		  jobApplication.setUser(userDAO.getUserByUserId(loggedInUserId));
+		  
+		  jobDAO.saveJobApplication(jobApplication);
+		  
+		  return new ResponseEntity<Job>(HttpStatus.CREATED);
+		}
 
 }

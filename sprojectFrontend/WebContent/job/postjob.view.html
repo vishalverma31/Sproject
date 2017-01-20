@@ -1,0 +1,67 @@
+<div>
+      <div ng-show="currentUser==''">
+           <div class="alert alert-danger fade in">
+		        <div>
+				    You are not logged in.. Please Login <a href="#/login"> here </a>
+				</div>
+				
+				<div>
+				    If you are not registered, you can register <a href="#/register"> here </a>
+				</div>
+		   
+		   </div>
+	  </div>
+	  
+	  <div ng-hide="currentUser==''">
+	       <div class="generic-container">
+		        <form ng-submit="vm.submit()" name="myForm" class="form-horizontal">
+				      <label>Please fill the Job details..</label>
+					  
+					  <div class="row">
+					       <div class="form-group col-md-12">
+						   <label class="col-md-12 control-lable" for="title">Title</label>
+						      <div class="col-md-7">
+						        <input type="text" ng-model="vm.job.title" id="title"
+								   class="title form-control input-sm"
+								   placeholder="Enter Job Title"
+								   required ng-minlength="5" />
+						      </div>
+						   </div>
+					  </div>
+					  
+					  <div class="row">
+					       <div class="form-group col-md-12">
+						   <label class="col-md-12 control-lable" for="qualification">Qualification</label>
+						      <div class="col-md-7">
+						        <input type="text" ng-model="vm.job.qualification" id="qualification"
+								   class="title form-control input-sm"
+								   placeholder="Enter Job Qualification"
+								   required ng-minlength="5" />
+						      </div>
+						   </div>
+					  </div>
+					  
+					  <div class="row">
+					       <div class="form-group col-md-12">
+						   <label class="col-md-12 control-lable" for="description">Title</label>
+						      <div class="col-md-7">
+						        <textarea rows="60" cols="300" ng-model="vm.job.description"
+ 								   id="description" class="title form-control input-sm"
+								   placeholder="Enter Blog Description" required ng-minlength="50" 
+								   ng-maxlength="500">
+								 </textarea>  
+						      </div>
+						   </div>
+					  </div>
+					  
+					  <div class="row">
+					       <div class="form-actions floatRight">
+						       <input type="submit" value="Create Job" class="btn btn-primary btn-sm" />
+							   <button type="button" ng-click="vm.reset()"
+                                      class="btn btn-warning btn-sm">Reset</button>
+						   </div>
+					  </div>
+				</form>	  
+		   </div>	  
+	  </div>
+</div>

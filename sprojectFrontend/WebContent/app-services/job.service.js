@@ -3,73 +3,76 @@
 
     angular
         .module('app')
-        .factory('BlogService', BlogService);
+        .factory('JobService', JobService);
 
-    BlogService.$inject = ['$http','$q','$rootScope'];
-    function BlogService($http,$q,$rootScope) {
+    JobService.$inject = ['$http','$q','$rootScope'];
+    function JobService($http,$q,$rootScope) {
         var BASE_URL='http://localhost:8186/sprojectRest';
         var service = {};
 
-        service.fetchAllBlogs = fetchAllBlogs;
-        service.getBlog = getBIog;
-        service.createBlog = createBlog;
-       
-        service.deleteBlog = deleteBlog;
+        service.getAllJobs = getAllJobs;
+        service.getJobDetails = getJobDetails;
+        service.postAJob = postAJob;
+        service.applyForJob = applyForJob;
 
         return service;
         
-        function fetchAllBlogs() {
-            return $http.get(BASE_URL+'/blog/')
+        function getAllJobs() {
+            return $http.get(BASE_URL+'/job/')
               .then(
                       function(response){
                            return response.data;
                         },
                       function(errResponse){
-                           console.error('Error fetching all Blogs');
+                           console.error('Error getting all the Jobs');
+                           return $q.reject(errResponse);
+                       }
+                 );
+        }
+        
+        function getJobDetails(jobId) {
+            return $http.get(BASE_URL+'/job/'+jobId)
+              .then(
+                      function(response){
+					       console.log('Job details:'+response.data.title);
+						   
+						   $rootScope.selectedJob=response.data;
+						   						   
+                           return response.data;
+                        },
+                      function(errResponse){
+                           console.error('Error while getting the Job Details');
+                           return $q.reject(errResponse);
+                       }
+                   );
+        }
+        
+        function postAJob(job) {
+            return $http.post(BASE_URL+'/job/', job)
+              .then(
+                      function(response){
+                           return response.data;
+                        },
+                      function(errResponse){
+                           console.error('Error while posting the Job');
                            return $q.reject(errResponse);
                        }
                  );
             }
         
-           function createBlog(blog) {
-            return $http.post(BASE_URL+'/blog/', blog)
+        function applyForJob(jobId) {
+            return $http.post(BASE_URL+'/applyForJob/'+jobId)
               .then(
                       function(response){
                            return response.data;
                         },
                       function(errResponse){
-                           console.error('Error creating the Blog');
+                           console.error('Error while applying for the Job');
                            return $q.reject(errResponse);
                        }
                  );
             }
-           
-           function deleteBlog(id) {
-            return $http.delete(BASE_URL+'/blog/'+id)
-              .then(
-                      function(response){
-                           return response.data;
-                        },
-                      function(errResponse){
-                           console.error('Error while deleting Blog');
-                           return $q.reject(errResponse);
-                       }
-                 );
-            }
-           
-           function getBlog(id) {
-            return $http.get(BASE_URL+'/blog/'+id)
-              .then(
-                      function(response){
-                           return response.data;
-                        },
-                      function(errResponse){
-                           console.error('Error while getting the Blog');
-                           return $q.reject(errResponse);
-                       }
-                   );
-            }
-
+        
 }
 
 })();

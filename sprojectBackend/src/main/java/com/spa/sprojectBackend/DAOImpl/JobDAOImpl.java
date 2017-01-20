@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.spa.sprojectBackend.DAO.JobDAO;
 import com.spa.sprojectBackend.model.Job;
+import com.spa.sprojectBackend.model.JobApplication;
 
 @Repository("jobDAO")
 @EnableTransactionManagement
@@ -42,6 +43,12 @@ public class JobDAOImpl implements JobDAO{
 		Session session=sessionFactory.getCurrentSession();
 		List<Job> listOfJobs=session.createQuery("from Job").getResultList();
 		return listOfJobs;
+	}
+
+	public void saveJobApplication(JobApplication jobApplication) {
+		Session session=sessionFactory.getCurrentSession();
+		session.saveOrUpdate(jobApplication);
+		
 	}
 
 }

@@ -27,7 +27,7 @@
         }
 
         function GetById(id) {
-            return $http.get(BASE_URL+'/user/'+ id)
+            return $http.get(BASE_URL+'/user/id/'+ id)
             .then(
             		handleSuccess, 
             		handleError('Error getting user by id')
@@ -35,7 +35,7 @@
         }
 
         function GetByUsername(username) {
-            return $http.get(BASE_URL+'/user/' + username)
+            return $http.get(BASE_URL+'/user/username/' + username)
             .then(
             		handleSuccess, 
             		handleError('Error getting user by username')

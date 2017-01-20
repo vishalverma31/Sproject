@@ -6,7 +6,7 @@
         .controller('BlogController', BlogController);
 
     BlogController.$inject = ['$scope','BlogService','$location', '$rootScope'];
-    function BlogController($scope,BlogService,$location,$routeParams,$rootScope) {
+    function BlogController($scope,BlogService,$location,$rootScope) {
     	 var vm = this;
 
          vm.blog = null;
@@ -19,6 +19,8 @@
          vm.edit = edit;
          vm.remove = remove;
          vm.reset = reset;
+         
+         console.log('UserName in Blog Ctrl:'+$rootScope.currentUser);
 
          vm.fetchAllBlogs();
          
@@ -34,7 +36,7 @@
         	                          console.error('Error while fetching Blogs');
         	                      }
          );
-         };
+         }
         	    
         	    
          function fetchAllBlogs(){
@@ -49,7 +51,7 @@
         	    	                          console.error('Error while fetching Blogs');
         	    	                      }
          );
-         };    	         
+         }    	         
         
         function createBlog(blog){
         	    	BlogService.createBlog(blog)
@@ -59,7 +61,7 @@
         	    	    	                          console.error('Error while creating Blog.');
         	    	    	                      }
         );
-        };        	    	    	 
+        }        	    	    	 
        
         function updateBlog(blog, id){
             	   BlogService.updateBlog(blog, id)
@@ -69,7 +71,7 @@
             	                          console.error('Error while updating Blog.');
            	    	                      }
         ); 
-        };       	    	     
+        }       	    	     
 
         function submit() {
            	    	   console.log('Saving New Blog', vm.blog); 
@@ -78,7 +80,7 @@
            	    	   vm.createBlog(vm.blog);
 
            	    	vm.reset();
-           	    	};
+       }
 
        function edit(id) {
            	    	   console.log('Id to be edited', id); 
@@ -88,7 +90,7 @@
            	    	           break;
            	    	          }
            	    	   }
-       };
+       }
            	    	
 
        function remove(id) {
@@ -97,12 +99,12 @@
            	    	          vm.reset();
            	    	          }
            	    	    vm.deleteBlog(id);
-        };
+        }
 
        function reset(){
            	    	      vm.blog={};
            	    	      $scope.myForm.$setPristine();
-        };
+        }
 }
 
 })();
