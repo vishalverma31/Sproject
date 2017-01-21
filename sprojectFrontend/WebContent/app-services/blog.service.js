@@ -7,11 +7,11 @@
 
     BlogService.$inject = ['$http','$q','$rootScope'];
     function BlogService($http,$q,$rootScope) {
-        var BASE_URL='http://localhost:8186/sprojectRest';
+        var BASE_URL='http://localhost:9080/sprojectRest';
         var service = {};
 
         service.fetchAllBlogs = fetchAllBlogs;
-        service.getBlog = getBIog;
+        service.getBlog = getBlog;
         service.createBlog = createBlog;
        
         service.deleteBlog = deleteBlog;
@@ -38,7 +38,7 @@
                            return response.data;
                         },
                       function(errResponse){
-                           console.error('Error creating the Blog');
+                           console.error('Service: Error creating the Blog');
                            return $q.reject(errResponse);
                        }
                  );

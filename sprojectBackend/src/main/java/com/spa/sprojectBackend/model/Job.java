@@ -1,6 +1,8 @@
 package com.spa.sprojectBackend.model;
 
-import java.sql.Date;
+
+
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,6 +22,10 @@ public class Job {
 	private Date dateTime;
 	private String qualification;
 	private String status;
+	
+	public Job() {
+		
+	}
 	public long getJobId() {
 		return jobId;
 	}

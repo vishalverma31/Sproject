@@ -18,7 +18,9 @@
 
         function login() {
         	console.log('inside login controller')
-            vm.dataLoading = true;
+            
+        	vm.dataLoading = true;
+        	
             AuthenticationService.Login(vm.username, vm.password, function (response) {
             	console.log(response.success)
                 if (response.success) {

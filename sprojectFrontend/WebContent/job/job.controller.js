@@ -6,7 +6,7 @@
         .controller('JobController', JobController);
 
     JobController.$inject = ['$scope','JobService','$location', '$rootScope'];
-    function BlogController($scope,JobService,$location,$rootScope) {
+    function JobController($scope,JobService,$location,$rootScope) {
     	 var vm = this;
          vm.job = null;
          vm.jobs = [];

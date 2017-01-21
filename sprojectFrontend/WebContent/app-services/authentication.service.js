@@ -17,9 +17,15 @@
 
         function Login(username, password, callback) {
 
-           console.log('inside Login method inside service')
-            $http.post('http://localhost:8186/sprojectRest/user/authenticate', { username: username, password: password })
-                .then(function () {
+        	console.log('inside Login method inside service')
+            $http.post('http://localhost:9080/sprojectRest/user/authenticate', { username: username, password: password })
+                .then(function (res) {
+					$rootScope.currentUser={userId: res.data.userId,
+							firstName: res.data.firstName,
+							lastName: res.data.lastName,
+							username: res.data.username,
+							password: res.data.password};
+					
                 	var response={success:true};
                     callback(response);
                 });
@@ -28,13 +34,7 @@
 
         function SetCredentials(username, password) {
             
-
-            $rootScope.currentUser = {
-                    username: username,
-                    password: password
-                
-            };
-
+        	
             // set default auth header for http requests
             $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.currentUser;
 

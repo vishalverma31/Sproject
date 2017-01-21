@@ -1,5 +1,6 @@
 package com.spa.sprojectBackend.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,9 +17,13 @@ public class Blog {
 	private long blogId;
 	private String title;
 	private String description;
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="userId")
 	private User user;
+	
+	public Blog() {
+		
+	}
 	
 	public long getBlogId() {
 		return blogId;

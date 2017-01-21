@@ -8,7 +8,7 @@
     UserService.$inject = ['$http'];
     function UserService($http) {
         var service = {};
-        var BASE_URL='http://localhost:8186/sprojectRest';
+        var BASE_URL='http://localhost:9080/sprojectRest';
         service.GetAll = GetAll;
         service.GetById = GetById;
         service.GetByUsername = GetByUsername;

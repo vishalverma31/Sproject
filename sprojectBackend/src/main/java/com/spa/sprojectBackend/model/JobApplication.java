@@ -31,6 +31,11 @@ public class JobApplication {
 	private Date dateApplied;
 	private String remarks;
 	private String status;
+	
+	public JobApplication() {
+		
+	}
+	
 	public long getJobApplicationId() {
 		return jobApplicationId;
 	}

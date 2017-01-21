@@ -7,7 +7,7 @@
 
     JobService.$inject = ['$http','$q','$rootScope'];
     function JobService($http,$q,$rootScope) {
-        var BASE_URL='http://localhost:8186/sprojectRest';
+        var BASE_URL='http://localhost:9080/sprojectRest';
         var service = {};
 
         service.getAllJobs = getAllJobs;

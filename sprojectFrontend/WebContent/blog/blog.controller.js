@@ -13,7 +13,7 @@
          vm.allBlogs = [];
          vm.getBlog = getBlog;
          vm.fetchAllBlogs = fetchAllBlogs;
-         vm.createBlog = createBlog;
+         //vm.createBlog = createBlog;
          vm.updateBlog = updateBlog;
          vm.submit = submit;
          vm.edit = edit;
@@ -44,8 +44,8 @@
         	    	       .then(
         	    	                      function(d) {
         	    	                          console.log('inside fetch function')
-        	    	                          vm.allBlog=d;
-        	    	                          console.log(vm.allBlog);
+        	    	                          vm.allBlogs=d;
+        	    	                          console.log(vm.allBlogs);
         	    	                      },
         	    	                      function(errResponse){
         	    	                          console.error('Error while fetching Blogs');
@@ -58,7 +58,7 @@
         	    	    	       .then(
         	    	    	                      vm.fetchAllBlogs,
         	    	    	                      function(errResponse){
-        	    	    	                          console.error('Error while creating Blog.');
+        	    	    	                          console.error('Ctrl: Error while creating Blog.');
         	    	    	                      }
         );
         }        	    	    	 
@@ -77,7 +77,7 @@
            	    	   console.log('Saving New Blog', vm.blog); 
            	    	   console.log($rootScope.currentUser);
            	    	   vm.blog.user=$rootScope.currentUser;
-           	    	   vm.createBlog(vm.blog);
+           	    	   createBlog(vm.blog);
 
            	    	vm.reset();
        }

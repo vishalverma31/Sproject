@@ -18,6 +18,11 @@ public class User {
 		private String password;
 		
 		
+		
+		public User() {
+			
+		}
+		
 		public long getUserId() {
 			return userId;
 		}
