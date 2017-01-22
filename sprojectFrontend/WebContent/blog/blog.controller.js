@@ -73,7 +73,7 @@
         ); 
         }       	    	     
 
-        function submit() {
+        function blogSubmit() {
            	    	   console.log('Saving New Blog', vm.blog); 
            	    	   console.log($rootScope.currentUser);
            	    	   vm.blog.user=$rootScope.currentUser;
