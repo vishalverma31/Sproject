@@ -10,6 +10,7 @@
         var service = {};
         var BASE_URL='http://localhost:9080/sprojectRest';
         service.GetAll = GetAll;
+        service.GetAllExceptCurrent=GetAllExceptCurrent;
         service.GetById = GetById;
         service.GetByUsername = GetByUsername;
         service.Create = Create;
@@ -64,6 +65,14 @@
             		handleSuccess, 
             		handleError('Error deleting user')
             	 );
+        }
+        
+        function GetAllExceptCurrent(){
+        	return $http.get(BASE_URL+'/user/friend/')
+        	.then(
+        			handleSuccess,
+        			handleError('Error getting all users')
+        		 );
         }
 
         // private functions

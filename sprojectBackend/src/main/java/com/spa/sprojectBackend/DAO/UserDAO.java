@@ -9,6 +9,7 @@ public interface UserDAO {
 	public void updateUser(User user);
 	public void deleteUser(User user);
 	public List<User> listUsers();
+	public List<User> listUsersById(long userId);
 	public User getUserByUserId(long userId);
 	public User getUserByUsername(String username);
 	public boolean isExistingUser(User user);

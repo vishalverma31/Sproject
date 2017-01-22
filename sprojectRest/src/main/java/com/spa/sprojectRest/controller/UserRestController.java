@@ -2,6 +2,8 @@ package com.spa.sprojectRest.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -132,4 +134,16 @@ public class UserRestController {
 	    	         
 	          return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
 	      }
+	  //------------------------ListAllUserExceptCurrentUser---------------------
+	  	
+	  	@GetMapping(value="/user/friend/")
+	    public ResponseEntity<List<User>> listAllUserExceptCurrentUser(HttpSession session) {
+	  		long loggedInUserID=(Long)session.getAttribute("loggedInUserID");
+	  		
+	  		List<User> users = userDAO.listUsersById(loggedInUserID);
+	        if(users.isEmpty()){
+	            return new ResponseEntity<List<User>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
+	        }
+	        return new ResponseEntity<List<User>>(users, HttpStatus.OK);
+	    }
 }

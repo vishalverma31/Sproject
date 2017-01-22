@@ -7,9 +7,9 @@
 	<div ng-repeat="job in vm.jobs | filter: search">
 	     <fielset>
 		     <p>ID: {{job.jobId}} 
-			     &nbsp; &nbsp; nbsp;
+			     &nbsp; &nbsp; &nbsp;
                  <a href="#" ng-click="vm.getJobDetails(job.jobId)"> Get Job Details</a>
-				 &nbsp; &nbsp; nbsp;
+				 &nbsp; &nbsp; &nbsp;
 				 <button type="button" ng-click="vm.applyForJob(job.jobId)"
 				   class="btn btn-warning btn-sm">Apply for job</button>
 		     </p>
