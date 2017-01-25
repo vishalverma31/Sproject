@@ -17,7 +17,7 @@ public class Job {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private long jobId;
-	private String title;
+	private String jobTitle;
 	private String description;
 	private Date dateTime;
 	private String qualification;
@@ -32,11 +32,12 @@ public class Job {
 	public void setJobId(long jobId) {
 		this.jobId = jobId;
 	}
-	public String getTitle() {
-		return title;
+	
+	public String getJobTitle() {
+		return jobTitle;
 	}
-	public void setTitle(String title) {
-		this.title = title;
+	public void setJobTitle(String jobTitle) {
+		this.jobTitle = jobTitle;
 	}
 	public String getDescription() {
 		return description;

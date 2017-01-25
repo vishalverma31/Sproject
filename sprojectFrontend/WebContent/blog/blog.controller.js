@@ -13,12 +13,12 @@
          vm.allBlogs = [];
          vm.getBlog = getBlog;
          vm.fetchAllBlogs = fetchAllBlogs;
-         //vm.createBlog = createBlog;
+         
          vm.updateBlog = updateBlog;
-         vm.submit = submit;
+         vm.blogSubmit = blogSubmit;
          vm.edit = edit;
          vm.remove = remove;
-         vm.reset = reset;
+         vm.blogReset = blogReset;
          
          console.log('UserName in Blog Ctrl:'+$rootScope.currentUser);
 
@@ -33,7 +33,7 @@
         	                          $location.path('/viewblog');
         	                      },
         	                      function(errResponse){
-        	                          console.error('Error while fetching Blogs');
+        	                          console.error('BCtrl: Error while fetching the Blog');
         	                      }
          );
          }
@@ -43,12 +43,12 @@
         	  	   BlogService.fetchAllBlogs()
         	    	       .then(
         	    	                      function(d) {
-        	    	                          console.log('inside fetch function')
+        	    	                          console.log('BCtrl: inside fetchAllBlogs function')
         	    	                          vm.allBlogs=d;
         	    	                          console.log(vm.allBlogs);
         	    	                      },
         	    	                      function(errResponse){
-        	    	                          console.error('Error while fetching Blogs');
+        	    	                          console.error('BCtrl: Error while fetching All Blogs');
         	    	                      }
          );
          }    	         
@@ -58,7 +58,7 @@
         	    	    	       .then(
         	    	    	                      vm.fetchAllBlogs,
         	    	    	                      function(errResponse){
-        	    	    	                          console.error('Ctrl: Error while creating Blog.');
+        	    	    	                          console.error('BCtrl: Error while creating Blog.');
         	    	    	                      }
         );
         }        	    	    	 
@@ -68,22 +68,22 @@
            	    	       .then(
            	                      vm.fetchAllBlogs,
            	                      function(errResponse){
-            	                          console.error('Error while updating Blog.');
+            	                          console.error('BCtrl: Error while updating Blog.');
            	    	                      }
         ); 
         }       	    	     
 
         function blogSubmit() {
-           	    	   console.log('Saving New Blog', vm.blog); 
+           	    	   console.log('BCtrl: Saving New Blog', vm.blog); 
            	    	   console.log($rootScope.currentUser);
            	    	   vm.blog.user=$rootScope.currentUser;
            	    	   createBlog(vm.blog);
 
-           	    	vm.reset();
+           	    	vm.blogReset();
        }
 
        function edit(id) {
-           	    	   console.log('Id to be edited', id); 
+           	    	   console.log('BCtrl: Id to be edited', id); 
            	    	   for(var i=0;i<vm.allBlogs.length;i++){
            	    	      if(vm.allBlogs[i].id === id) {
            	    	          vm.blog = angular.copy(vm.allBlogs[i]);
@@ -94,7 +94,7 @@
            	    	
 
        function remove(id) {
-           	    	   console.log('Id to be deleted', id); 
+           	    	   console.log('BCtrl: Id to be deleted', id); 
            	    	      if(vm.blog.id === id) {
            	    	          vm.reset();
            	    	          }
@@ -103,7 +103,7 @@
 
        function blogReset(){
            	    	      vm.blog={};
-           	    	      $scope.myForm.$setPristine();
+           	    	      $scope.myBlogForm.$setPristine();
         }
 }
 

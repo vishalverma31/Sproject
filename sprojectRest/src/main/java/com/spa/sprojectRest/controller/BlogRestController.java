@@ -1,5 +1,6 @@
 package com.spa.sprojectRest.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,12 +47,13 @@ public class BlogRestController {
 			        }
 	    		        return new ResponseEntity<Blog>(blog, HttpStatus.OK);
 			    }
-		 //-------------------Create a Blog--------------------------------------------------------
+		   
+	//-------------------Create a Blog--------------------------------------------------------
 		    
 			@PostMapping(value = "/blog/")
 		    public ResponseEntity<Void> createBlog(@RequestBody Blog blog) {
 		         
-		        	  
+		        blog.setDateTime(new Date()); 
 		        blogDAO.addBlog(blog);
 		  
 		       
@@ -70,8 +72,8 @@ public class BlogRestController {
 		            return new ResponseEntity<Blog>(HttpStatus.NOT_FOUND);
 		        }
 		  
-		        currentBlog.setTitle(blog.getTitle());
-		        currentBlog.setDescription(blog.getDescription());
+		        currentBlog.setBlogTitle(blog.getBlogTitle());
+		        currentBlog.setBlogContent(blog.getBlogContent());
 		        	          
 		        blogDAO.updateBlog(currentBlog);
 		        return new ResponseEntity<Blog>(currentBlog, HttpStatus.OK);

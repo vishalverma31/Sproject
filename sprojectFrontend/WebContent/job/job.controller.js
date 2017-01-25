@@ -15,8 +15,8 @@
          vm.getAllJobs = getAllJobs;
          vm.applyForJob = applyForJob;
 		 
-         vm.submit = submit;
-         vm.reset = reset;
+         vm.submitJob = submitJob;
+         vm.resetJob = resetJob;
          
          console.log('UserName in JobCtrl:'+$rootScope.currentUser);
 		 
@@ -26,12 +26,12 @@
   	  	   JobService.getAllJobs()
   	    	       .then(
   	    	                      function(d) {
-  	    	                          console.log('inside fetch function')
+  	    	                          console.log('JobCtrl: inside fetch function')
   	    	                          vm.jobs=d;
   	    	                          console.log(vm.jobs);
   	    	                      },
   	    	                      function(errResponse){
-  	    	                          console.error('Error while fetching Jobs');
+  	    	                          console.error('JobCtrl: Error while fetching all Jobs');
   	    	                      });
             }
          
@@ -44,7 +44,7 @@
       	                          $location.path('/jobdetails');
       	                      },
       	                      function(errResponse){
-      	                          console.error('Error while fetching job details');
+      	                          console.error('JobCtrl: Error while fetching job details');
       	                      });
             }
          
@@ -55,7 +55,7 @@
 											  alert("You successfully posted the Job")
 											  },
  	    	    	                      function(errResponse){
- 	    	    	                          console.error('Error while posting the Job.');
+ 	    	    	                          console.error('JobCtrl: Error while posting the Job.');
  	    	    	                      });
             }
          
@@ -66,33 +66,34 @@
         		
         		if(typeof currentUser.userId=='undefined'){
         		     alert("Please login to apply for Job")
-        			 console.log("User not logged in..Can't Apply")
+        			 console.log("JobCtrl: User not logged in..Can't Apply")
         			 $location.path('/login');
         		}
 
-        		console.log("@UserId:"+currentUser.userId+ "applying For Job:"+jobId)
+        		console.log("JobCtrl: UserId:"+currentUser.userId+ "applying For Job:"+jobId)
         		
         		JobService.applyForJob(jobId)
         		    .then(
         			        function(d){
         					vm.job=d;
-        					alert("You have successfully applied for job")
+        					alert("JobCtrl: You have successfully applied for job")
         					},
         					function(errResponse){
-        	 	    	    console.error('Error while applying the Job.');
-        	 	    	    	                      });
-        	            }
+        	 	    	    console.error('JobCtrl: Error while applying the Job.');
+        	 	    	    }
+        				);
+        }
          
-         function submit() {
- 	    	   console.log('Saving New Job', vm.job); 
+         function submitJob() {
+ 	    	   console.log('JobCtrl: Saving New Job', vm.job); 
  	    	   postAJob(vm.job);
 
  	    	vm.reset();
  	    	}
          
-         function reset(){
+         function resetJob(){
  	    	      vm.user={};
- 	    	      $scope.myForm.$setPristine();
+ 	    	      $scope.myJobForm.$setPristine();
             }
 
 }

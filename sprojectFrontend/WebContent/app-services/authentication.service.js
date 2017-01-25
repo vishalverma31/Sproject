@@ -17,7 +17,7 @@
 
         function Login(username, password, callback) {
 
-        	console.log('inside Login method inside service')
+        	console.log('AuthService: inside Login method inside service')
             $http.post('http://localhost:9080/sprojectRest/user/authenticate', { username: username, password: password })
                 .then(function (res) {
 					$rootScope.currentUser={userId: res.data.userId,

@@ -1,6 +1,6 @@
 <div class="container">
 Welcome To Blogs
 <div ng-repeat="blog in vm.allBlogs">
-    <a href="#" ng-click="vm.getBlog(blog.blogId)"> Title {{blog.title}} - Written By: {{blog.user.username}}</a>
+    <a href="#" ng-click="vm.getBlog(blog.blogId)"> Title: {{blog.blogTitle}} - Written By: {{blog.user.username}}</a>
 </div>
 </div>

@@ -25,7 +25,7 @@
                            return response.data;
                         },
                       function(errResponse){
-                           console.error('Error fetching all Blogs');
+                           console.error('BService: Error fetching all Blogs');
                            return $q.reject(errResponse);
                        }
                  );
@@ -38,7 +38,7 @@
                            return response.data;
                         },
                       function(errResponse){
-                           console.error('Service: Error creating the Blog');
+                           console.error('BService: Error creating the Blog');
                            return $q.reject(errResponse);
                        }
                  );
@@ -51,7 +51,7 @@
                            return response.data;
                         },
                       function(errResponse){
-                           console.error('Error while deleting Blog');
+                           console.error('BService: Error while deleting Blog');
                            return $q.reject(errResponse);
                        }
                  );
@@ -61,10 +61,11 @@
             return $http.get(BASE_URL+'/blog/'+id)
               .then(
                       function(response){
+                    	   $rootScope.selectedBlog=response.data;
                            return response.data;
                         },
                       function(errResponse){
-                           console.error('Error while getting the Blog');
+                           console.error('BService: Error while getting the Blog');
                            return $q.reject(errResponse);
                        }
                    );

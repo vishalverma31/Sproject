@@ -49,4 +49,11 @@ public class BlogDAOImpl implements BlogDAO {
 		return blog;
 	}
 
+	public void deleteBlogByUserId(long userId) {
+		Session session=sessionFactory.getCurrentSession();
+		String hql = "delete from Blog where userId="+userId;
+		session.createQuery(hql).executeUpdate();
+		
+	}
+
 }

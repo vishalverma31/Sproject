@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.spa.sprojectBackend.DAO.BlogDAO;
 import com.spa.sprojectBackend.DAO.UserDAO;
 import com.spa.sprojectBackend.model.User;
 
@@ -24,6 +25,9 @@ public class UserRestController {
 
 	@Autowired
 	UserDAO userDAO;
+	
+	@Autowired
+	BlogDAO blogDAO;
 	
 	//-------------------Retrieve All Users--------------------------------------------------------
     
@@ -110,6 +114,7 @@ public class UserRestController {
 	        System.out.println("Fetching & Deleting User with id " + id);
 	  
 	        User user = userDAO.getUserByUserId(id);
+	        blogDAO.deleteBlogByUserId(id);
 	        if (user == null) {
 	            System.out.println("Unable to delete. User with id " + id + " not found");
 	            return new ResponseEntity<User>(HttpStatus.NOT_FOUND);

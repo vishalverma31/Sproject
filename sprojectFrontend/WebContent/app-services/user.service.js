@@ -23,7 +23,7 @@
             return $http.get(BASE_URL+'/user/')
             .then(
             	   handleSuccess, 
-            	   handleError('Error getting all users')
+            	   handleError('UserService: Error getting all users')
             	 );
         }
 
@@ -31,7 +31,7 @@
             return $http.get(BASE_URL+'/user/id/'+ id)
             .then(
             		handleSuccess, 
-            		handleError('Error getting user by id')
+            		handleError('UserService: Error getting user by id')
             	 );
         }
 
@@ -39,7 +39,7 @@
             return $http.get(BASE_URL+'/user/username/' + username)
             .then(
             		handleSuccess, 
-            		handleError('Error getting user by username')
+            		handleError('UserService: Error getting user by username')
             	 );
         }
 
@@ -47,7 +47,7 @@
             return $http.post(BASE_URL+'/user/', user)
             .then(
             		createSuccess,
-            		handleError('Error creating user')
+            		handleError('UserService: Error creating user')
             	 );
         }
 
@@ -55,7 +55,7 @@
             return $http.put(BASE_URL+'/user/' + user.id, user)
             .then(
             		handleSuccess,
-            		handleError('Error updating user')
+            		handleError('UserService: Error updating user')
             	 );
         }
 
@@ -63,7 +63,7 @@
             return $http.delete(BASE_URL+'/user/' + id)
             .then(
             		handleSuccess, 
-            		handleError('Error deleting user')
+            		handleError('UserService: Error deleting user')
             	 );
         }
         
@@ -71,7 +71,7 @@
         	return $http.get(BASE_URL+'/user/friend/')
         	.then(
         			handleSuccess,
-        			handleError('Error getting all users')
+        			handleError('UserService: Error getting all users')
         		 );
         }
 

@@ -5,8 +5,8 @@
         .module('app')
         .factory('FriendService', FriendService);
 
-    FriendService.$inject = ['$http'];
-    function FriendService($http) {
+    FriendService.$inject = ['$http','$q'];
+    function FriendService($http,$q) {
         var service = {};
         var BASE_URL='http://localhost:9080/sprojectRest';
         
@@ -26,7 +26,7 @@
                                  function(response){
                                             return response.data;
                                  }, function(errResponse) {
-                                     console.error('Error while creating friend');
+                                     console.error('FriendService: Error while creating friend');
                                      return $q.reject(errResponse);
                                  }
                              );
@@ -56,7 +56,7 @@
                                  function(response){
                                             return response.data;
                                  }, function(errResponse) {
-                                     console.error('Error while adding friend');
+                                     console.error('FriendService: Error while adding friend');
                                      return $q.reject(errResponse);
                                  }
                              );
@@ -68,7 +68,7 @@
                                  function(response){
                                             return response.data;
                                  }, function(errResponse) {
-                                     console.error('Error while rejecting friend');
+                                     console.error('FriendService: Error while rejecting friend');
                                      return $q.reject(errResponse);
                                  }
                              );

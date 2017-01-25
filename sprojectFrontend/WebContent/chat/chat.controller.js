@@ -6,13 +6,13 @@ angular
 		 $scope.max = 140;
 		 
 		 $scope.addMessage = function() {
-			console.log("addMessage")
+			console.log("ChatCtrl: addMessage")
 			ChatService.send($scope.message);
 			$scope.message="";
 			};
 			
 			ChatService.receive().then(null,null,function(message) {
-			    console.log("receive")
+			    console.log("ChatCtrl: receive")
 				$scope.messages.push(message);
 			});
 });

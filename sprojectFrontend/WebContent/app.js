@@ -26,6 +26,8 @@ console.log('inside app.js')
                 templateUrl: 'register/register.view.html',
                 controllerAs: 'vm'
             })
+            
+            //BLOG MODULE
             .when('/createblog', {
                 controller: 'BlogController',
                 templateUrl: 'blog/createblog.view.html',
@@ -42,6 +44,7 @@ console.log('inside app.js')
                 controllerAs: 'vm'
             })
             
+            //JOB MODULE
             .when('/postjob', {
                 controller: 'JobController',
                 templateUrl: 'job/postjob.view.html',
@@ -57,9 +60,28 @@ console.log('inside app.js')
                 templateUrl: 'job/jobdetails.view.html',
                 controllerAs: 'vm'
             })
+            
+            //CHAT FUNCTIONALITY
             .when('/chat', {
                 controller: 'ChatController',
                 templateUrl: 'chat/chat.view.html',
+                controllerAs: 'vm'
+            })
+            
+            //FRIEND MODULE
+            .when('/friendrequest', {
+                controller: 'FriendController',
+                templateUrl: 'friend/friendrequest.view.html',
+                controllerAs: 'vm'
+            })
+            .when('/searchfriend', {
+                controller: 'FriendController',
+                templateUrl: 'friend/searchfriend.view.html',
+                controllerAs: 'vm'
+            })
+            .when('/viewfriend', {
+                controller: 'FriendController',
+                templateUrl: 'friend/viewfriend.view.html',
                 controllerAs: 'vm'
             })
 

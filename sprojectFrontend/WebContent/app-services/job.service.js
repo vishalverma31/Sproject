@@ -24,7 +24,7 @@
                            return response.data;
                         },
                       function(errResponse){
-                           console.error('Error getting all the Jobs');
+                           console.error('JobService: Error getting all the Jobs');
                            return $q.reject(errResponse);
                        }
                  );
@@ -34,14 +34,14 @@
             return $http.get(BASE_URL+'/job/'+jobId)
               .then(
                       function(response){
-					       console.log('Job details:'+response.data.title);
+					       console.log('JobService: Job details:'+response.data.title);
 						   
 						   $rootScope.selectedJob=response.data;
 						   						   
                            return response.data;
                         },
                       function(errResponse){
-                           console.error('Error while getting the Job Details');
+                           console.error('JobService: Error while getting the Job Details');
                            return $q.reject(errResponse);
                        }
                    );
@@ -54,7 +54,7 @@
                            return response.data;
                         },
                       function(errResponse){
-                           console.error('Error while posting the Job');
+                           console.error('JobService: Error while posting the Job');
                            return $q.reject(errResponse);
                        }
                  );
@@ -67,7 +67,7 @@
                            return response.data;
                         },
                       function(errResponse){
-                           console.error('Error while applying for the Job');
+                           console.error('JobService: Error while applying for the Job');
                            return $q.reject(errResponse);
                        }
                  );

@@ -1,5 +1,7 @@
 package com.spa.sprojectBackend.model;
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,8 +17,9 @@ public class Blog {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private long blogId;
-	private String title;
-	private String description;
+	private String blogTitle;
+	private String blogContent;
+	private Date dateTime;
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="userId")
 	private User user;
@@ -31,18 +34,34 @@ public class Blog {
 	public void setBlogId(long blogId) {
 		this.blogId = blogId;
 	}
-	public String getTitle() {
-		return title;
+	
+	
+	public String getBlogTitle() {
+		return blogTitle;
 	}
-	public void setTitle(String title) {
-		this.title = title;
+
+	public void setBlogTitle(String blogTitle) {
+		this.blogTitle = blogTitle;
 	}
-	public String getDescription() {
-		return description;
+
+	public String getBlogContent() {
+		return blogContent;
 	}
-	public void setDescription(String description) {
-		this.description = description;
+
+	public void setBlogContent(String blogContent) {
+		this.blogContent = blogContent;
 	}
+	
+	
+
+	public Date getDateTime() {
+		return dateTime;
+	}
+
+	public void setDateTime(Date dateTime) {
+		this.dateTime = dateTime;
+	}
+
 	public User getUser() {
 		return user;
 	}

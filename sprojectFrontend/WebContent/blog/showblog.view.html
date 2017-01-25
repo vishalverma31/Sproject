@@ -1,11 +1,11 @@
 <div class="container">
 <div class="form-group">
-    <label>{{selectedBlogtitle}}</label> 
+    <label>{{selectedBlog.blogTitle}}</label> 
 	<br>
 	Written by: <label>{{selectedBlog.user.username}}</label>
-	on <label>{{selectedBlog.dateTime}}</label>
+	on <label>{{selectedBlog.dateTime  | date:'HH:mm'}}</label>
 	<br>
 	<br>
-    <label>{{selectedBlog.description}}</label>
+    <label>{{selectedBlog.blogContent}}</label>
 </div>
 </div>
