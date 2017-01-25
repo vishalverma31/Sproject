@@ -30,7 +30,7 @@
 		getMyFriendRequests();
 		
 		function getMyFriends(){
-			console.log("Getting my friends")
+			console.log("=>FCtrl: Getting my friends")
 			FriendService.getMyFriends()
 					.then(
 							function(d){
@@ -44,7 +44,7 @@
 		}
 		
 		function getMyFriendRequests(){
-			console.log("Getting my friendRequests")
+			console.log("=>FCtrl: Getting my friendRequests")
 			FriendService.getMyFriendRequests()
 					.then(
 							function(d){
@@ -71,7 +71,7 @@
 		}
 		
 		function acceptFriendRequest(friendId){
-			console.log("=>acceptFriendRequest:"+friendId)
+			console.log("=>FCtrl: acceptFriendRequest:"+friendId)
 			FriendService.acceptFriendRequest(friendId)
 				.then(
 						function(d) {
@@ -85,7 +85,7 @@
 		}
 		
 		function rejectFriendRequest(friendId){
-			console.log("=>rejectFriendRequest:"+friendId)
+			console.log("=>FCtrl: rejectFriendRequest:"+friendId)
 			FriendService.rejectFriendRequest(friendId)
 				.then(
 						function(d) {

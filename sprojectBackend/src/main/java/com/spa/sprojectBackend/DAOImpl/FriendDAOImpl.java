@@ -53,7 +53,7 @@ public class FriendDAOImpl implements FriendDAO{
 
 	public List<Friend> listMyFriends(long id) {
 		Session session=sessionFactory.getCurrentSession();
-		List<Friend> friends=session.createQuery("from Friend where userId="+id).getResultList();
+		List<Friend> friends=session.createQuery("from Friend where userId="+id+" and Status='Accepted'").getResultList();
 		return friends;
 	}
 
@@ -61,7 +61,7 @@ public class FriendDAOImpl implements FriendDAO{
 		Session session=sessionFactory.getCurrentSession();
 		
 		Friend friend=(Friend)session
-				.createQuery("from Friend where userId="+userId+" and friendId="+friendId)
+				.createQuery("from Friend where userId="+friendId+" and friendId="+userId)
 				.getSingleResult(); 
 		return friend;
 	}

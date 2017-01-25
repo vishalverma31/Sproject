@@ -31,9 +31,9 @@
 					  
 					  <div class="row">
 					       <div class="form-group col-md-12">
-						   <label class="col-md-12 control-lable" for="description">Title</label>
+						   <label class="col-md-12 control-lable" for="description">Description</label>
 						      <div class="col-md-7">
-						        <textarea rows="100" cols="300" ng-model="vm.blog.description"
+						        <textarea rows="50" cols="100" ng-model="vm.blog.description"
  								   id="description" class="title form-control input-sm"
 								   placeholder="Enter Blog Description" required ng-minlength="50" 
 								   ng-maxlength="500">
@@ -45,7 +45,7 @@
 					  <div class="row">
 					       <div class="form-actions floatRight">
 						       <input type="submit" value="Create Blog" class="btn btn-primary btn-sm" />
-							   <button type="button" ng-click="vm.reset()"
+							   <button type="button" ng-click="vm.blogReset()"
                                       class="btn btn-warning btn-sm">Reset Blog</button>
 						   </div>
 					  </div>

@@ -101,7 +101,7 @@
            	    	    vm.deleteBlog(id);
         }
 
-       function reset(){
+       function blogReset(){
            	    	      vm.blog={};
            	    	      $scope.myForm.$setPristine();
         }
