@@ -64,8 +64,12 @@ console.log('inside app.js')
             //CHAT FUNCTIONALITY
             .when('/chat', {
                 controller: 'ChatController',
-                templateUrl: 'chat/chat.view.html',
-                controllerAs: 'vm'
+                templateUrl: 'chat/chat.view.html'
+            })
+            
+            .when('/privatechat', {
+                controller: 'PrivateChatController',
+                templateUrl: 'privatechat/privatechat.view.html'
             })
             
             //FRIEND MODULE

@@ -13,10 +13,10 @@
         service.getMyFriends=getMyFriends;               //done
         service.getMyFriendRequests=getMyFriendRequests; //done
         service.sendFriendRequest=sendFriendRequest;     //done
-        service.updateFriendRequest=updateFriendRequest; 
+         
         service.acceptFriendRequest=acceptFriendRequest; //done
         service.rejectFriendRequest=rejectFriendRequest; //done
-        service.deleteFriend=deleteFriend;
+        //service.deleteFriend=deleteFriend;
         
         return service;
         

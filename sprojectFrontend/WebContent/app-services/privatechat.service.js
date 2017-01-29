@@ -1,8 +1,9 @@
 angular
         .module('app')
-        .service('ChatService', function($q,$timeout,$rootScope) {
+        .service('PrivateChatService', function($q,$timeout,$rootScope) {
         
 		var user=$rootScope.currentUser;
+		var friendName=$rootScope.friendName;
 		
 		var service={}, listener= $q.defer(), socket={
 		client: null,
@@ -10,17 +11,17 @@ angular
 		}, messageIds=[];
 		
 		service.RECONNECT_TIMEOUT=30000;
-		service.SOCKET_URL="/sprojectRest/chat_forum";
-		service.CHAT_TOPIC="/topic/message";
-		service.CHAT_BROKER="/app/chat_forum";
+		service.SOCKET_URL="/sprojectRest/chat";
+		service.CHAT_TOPIC="/queue/message/"+user.username;
+		service.CHAT_BROKER="/app/chat";
 		
 		service.receive=function(){
-		   console.log("ChatService: receive")
+		   console.log("PChatService: receive")
 		   return listener.promise;
 		};
 		
 		service.send=function(message){
-		   console.log("ChatService: send")
+		   console.log("PChatService: send")
 		   
 		   var id=Math.floor(Math.random()*1000000);
 		   
@@ -29,20 +30,21 @@ angular
 		   }, JSON.stringify({
 		      message: message,
 			  username: user.username,
+			  friendName:friendName,
 			  id: id
 			  }));
 			messageIds.push(ids);
 		};
 		
 		var reconnect= function() {
-		console.log("ChatService: reconnect")
+		console.log("PChatService: reconnect")
 		$timeout(function() {
 		   initialize();
 		}, this.RECONNECT_TIMEOUT);
 		};
 		
 		var getMessage= function(data){
-		  console.log("ChatService: getMessage")
+		  console.log("PChatService: getMessage")
 		  var message=JSON.parse(data), out= {};
 		  out.message=message.message;
 		  out.username=message.username;
@@ -59,7 +61,7 @@ angular
 		};
 		
 		var initialize= function() {
-		    console.log("ChatService: initialize")
+		    console.log("PChatService: initialize")
 			socket.client= new SockJS(service.SOCKET_URL);
 			socket.stomp= Stomp.over(socket.client);
 			socket.stomp.connect({}, startListener);

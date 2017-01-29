@@ -18,12 +18,13 @@
 		vm.sendFriendRequest=sendFriendRequest;
 		vm.acceptFriendRequest=acceptFriendRequest;
 		vm.rejectFriendRequest=rejectFriendRequest;
-		vm.updateFriendRequest=updateFriendRequest;
+		//vm.updateFriendRequest=updateFriendRequest;
 		
 		vm.getMyFriends=getMyFriends;
 		vm.deleteFriend=deleteFriend;
 		
 		vm.fetchAllUsers=fetchAllUsers;
+		vm.startPrivateChat=startPrivateChat;
 		
 		fetchAllUsers();
 		getMyFriends();
@@ -35,9 +36,9 @@
 					.then(
 							function(d){
 								vm.friends=d;
-								console.log("Got the friend list")
+								console.log("=>FCtrl: Got the friend list")
 							},function(errResponse){
-									console.error('Error while fetching friends')
+									console.error('=>FCtrl: Error while fetching friends')
 							}
 					
 					);
@@ -49,26 +50,26 @@
 					.then(
 							function(d){
 								vm.friendRequests=d;
-								console.log("Got the friendRequests")
+								console.log("=>FCtrl: Got the friendRequests")
 							},function(errResponse){
-									console.error('Error while fetching friendRequests')
+									console.error('=>FCtrl: Error while fetching friendRequests')
 							}
 					
 					);
 		}
 		
-		function updateFriendRequest(friend, id){
+		/*function updateFriendRequest(friend, id){
 			console.log("=>FCtrl: updateFriendRequest()")
 			FriendService.updateFriendRequest(friend, id)
 				.then(
 						fetchAllFriends
 						,function(errResponse){
-									console.error('Error while updating friendRequests')
+									console.error('=>FCtrl: Error while updating friendRequests')
 							}
 				
 					);
 			
-		}
+		}*/
 		
 		function acceptFriendRequest(friendId){
 			console.log("=>FCtrl: acceptFriendRequest:"+friendId)
@@ -79,7 +80,7 @@
 						getMyFriendRequests();
 						alert("friend Request Accepted")
 						},function(errResponse){
-							console.error('Error while sending friend Request ')
+							console.error('=>FCtrl: Error while sending friend Request ')
 					});
 						
 		}
@@ -93,7 +94,7 @@
 						getMyFriendRequests();
 						alert("friend Request Rejected")
 						},function(errResponse){
-							console.error('Error while sending friend Request ')
+							console.error('=>FCtrl: Error while sending friend Request ')
 					});
 						
 		}
@@ -104,7 +105,7 @@
 					function(d){
 						vm.users=d;
 					}, function(errResponse){
-							console.error('Error while fetching Users')
+							console.error('=>FCtrl: Error while fetching Users')
 					});
 		}
 		
@@ -113,10 +114,18 @@
 				.then(
 						fetchAllFriends,
 						function(errResponse){
-							console.error('Error while Deleting Friend')
+							console.error('=>FCtrl: Error while Deleting Friend')
 					});
 		
 		}
+		
+		function startPrivateChat(friendName)
+		{
+		  console.log("=>FCtrl: Start Private Chat:"+friendName)
+		  $rootScope.friendName=friendName;
+		  alert("Private Chat Started");
+		  $location.path("/privatechat")
+		} 
 
 }
 
