@@ -5,8 +5,72 @@
     <title>Sproject</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  
+  <script src="https://use.fontawesome.com/034feea29c.js"></script>
+  
+  <style>
+  body {
+    background-image: url("Webbackground7.jpg");
+	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+  }
+  
+  #footer {
+  position: absolute;
+  left:0;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 45px;
+  background-color:black;
+  }
+  
+  </style>
+  
 </head>
 <body>
+
+	<!-- Top Navigation Bar -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+<div class="container-fuild">
+  <div class="navbar-header">
+    <a class="navbar-brand" href="/">Sproject</a>
+  </div>
+  <ul class="nav navbar-nav">
+    <li><a href="/sprojectFrontend/#!/"><i class="fa fa-home fa-fw" aria-hidden="true"></i>&nbsp; Home</a></li>
+    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-pencil-square-o fa-fw" aria-hidden="true"></i>&nbsp; Blogs <span class="caret"> </span></a>
+      <ul class="dropdown-menu">
+        <li><a href="/sprojectFrontend/#!/createblog">Create a Blog</a></li>
+        <li><a href="/sprojectFrontend/#!/listtblog">List of Blogs</a></li>
+      </ul>
+    </li>
+	<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-briefcase fa-fw" aria-hidden="true"></i>&nbsp; Jobs <span class="caret"> </span></a>
+      <ul class="dropdown-menu">
+        <li><a href="/sprojectFrontend/#!/postjob">Post a Job</a></li>
+        <li><a href="/sprojectFrontend/#!/searchjob">List of Jobs</a></li>
+      </ul>
+    </li>
+	<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-users fa-fw" aria-hidden="true"></i>&nbsp; Friends <span class="caret"> </span></a>
+      <ul class="dropdown-menu">
+        <li><a href="/sprojectFrontend/#!/searchfriend">Search for Friends</a></li>
+        <li><a href="/sprojectFrontend/#!/friendrequest">My Friend Requests</a></li>
+		<li><a href="/sprojectFrontend/#!/viewfriend">My Friends</a></li>
+      </ul>
+    </li>
+	<li><a href="/sprojectFrontend/#!/chat_forum"><i class="fa fa-comments fa-fw" aria-hidden="true"></i>&nbsp; Chat Forum</a></li>      
+  </ul>
+  <ul class="nav navbar-nav navbar-right">
+      <li><a href="/sprojectFrontend/#!/login"><span class="glyphicon glyphicon-user"></span> Login</a></li>
+      <li><a href="/sprojectFrontend/#!/register"><span class="glyphicon glyphicon-log-in"></span> Sign Up </a></li>
+  </ul>
+</div>
+</nav>
+	
+	
     <div class="jumbotron">
         <div class="container">
             <div class="col-sm-8 col-sm-offset-2">
@@ -46,5 +110,24 @@
     <script src="privatechat/privatechat.controller.js"></script>
     <script src="friend/friend.controller.js"></script>
     
+<!-- Footer -->
+<footer class="footer" id="footer">
+   <div class="container">
+     <div class="row">
+        <div class="col-sm-6">
+           <span class="copyright text-inverse"><h4>Copyright © Sproject Inc. 2016</h4></span>
+        </div>
+        <div class="col-sm-6">
+            <div class="row">
+              <div class="col-md-12 hidden-xs text-right">
+                <a href="#"><i class="fa fa-2x fa-fw fa-instagram text-inverse"></i></a>
+                <a href="#"><i class="fa fa-2x fa-fw fa-twitter text-inverse"></i></a>
+                <a href="#"><i class="fa fa-2x fa-fw fa-facebook text-inverse"></i></a>
+              </div>
+            </div>
+        </div>
+      </div>		
+    </div>
+</footer>
 </body>
 </html>

@@ -62,7 +62,7 @@ console.log('inside app.js')
             })
             
             //CHAT FUNCTIONALITY
-            .when('/chat', {
+            .when('/chat_forum', {
                 controller: 'ChatController',
                 templateUrl: 'chat/chat.view.html'
             })

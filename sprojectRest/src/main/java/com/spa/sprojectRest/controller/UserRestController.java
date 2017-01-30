@@ -78,7 +78,7 @@ public class UserRestController {
 	            System.out.println("A User with name " + user.getUsername() + " already exist");
 	            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
 	        }
-	  
+	        user.setRole("user");
 	        userDAO.addUser(user);
 	  
 	       
@@ -131,13 +131,18 @@ public class UserRestController {
 	  //-------------------Authenticate a User--------------------------------------------------------
 	    
 	  	@PostMapping(value = "/user/authenticate")
-	      public ResponseEntity<User> authenticate(@RequestBody User user) {
+	      public ResponseEntity<User> authenticate(@RequestBody User user, HttpSession session) {
 	          
 	            System.out.println("in URcontroller");
 	          if (userDAO.authenticate(user.getUsername(),user.getPassword())) {
-	        	  friendDAO.setOnline(user.getUserId());
 	        	  System.out.println("inside if of URcontroller");
+	        	  friendDAO.setOnline(user.getUserId());
 	        	  User u=userDAO.getUserByUsername(user.getUsername());
+	        	  session.setAttribute("loggedInUser", u);
+	        	  session.setAttribute("loggedInUserId", u.getUserId());
+	        	  
+	        	  System.out.println("Logged In User Id:"+session.getAttribute("loggedInUserId"));
+	        	  
 	        	  return new ResponseEntity<User>(u,HttpStatus.OK);
 	          }
 	    	         
