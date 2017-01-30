@@ -96,6 +96,7 @@ console.log('inside app.js')
     function run($rootScope, $location, $cookies, $http) {
         // keep user logged in after page refresh
         $rootScope.currentUser = $cookies.getObject('currentUser') || {};
+        
         if ($rootScope.currentUser) {
             $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.currentUser;
         }
@@ -104,11 +105,22 @@ console.log('inside app.js')
             // redirect to login page if not logged in and trying to access a restricted page
             var restrictedPage = $.inArray($location.path(), ['/login', '/register','/listblog','/viewblog','/searchjob','/jobdetails']) === -1;
             console.log('Restricted Page:'+restrictedPage);
+            var adminPage = $.inArray($location.path(), ['/postjob']) === 0;
+            console.log('Restricted Page:'+restrictedPage);
             
             var loggedIn = $rootScope.currentUser.username;
-            console.log('logged In:'+loggedIn);
+            var role = $rootScope.currentUser.role;
+            console.log('logged In:'+loggedIn+' ['+role+']');
+            
             if (restrictedPage && !loggedIn) {
                 $location.path('/login');
+            }
+            else{
+            	if(adminPage && role!='admin') {
+            		alert('This action is restricted to the admin role only.');
+            		$location.path('/login');
+            	}
+            	
             }
         });
     }

@@ -24,7 +24,9 @@
 							firstName: res.data.firstName,
 							lastName: res.data.lastName,
 							username: res.data.username,
-							password: res.data.password};
+							password: res.data.password,
+							role: res.data.role
+					};
 					
                 	var response={success:true};
                     callback(response);

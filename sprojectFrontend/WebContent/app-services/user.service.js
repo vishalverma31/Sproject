@@ -16,6 +16,7 @@
         service.Create = Create;
         service.Update = Update;
         service.Delete = Delete;
+        service.Logout=Logout;
 
         return service;
 
@@ -72,6 +73,14 @@
         	.then(
         			handleSuccess,
         			handleError('UserService: Error getting all users')
+        		 );
+        }
+        
+        function Logout(id) {
+        	return $http.put(BASE_URL+'/user/logout')
+        	.then(
+        			handleSuccess,
+        			handleError('UserService: Error while Logging Out')
         		 );
         }
 

@@ -13,6 +13,7 @@
 
         function register() {
             vm.dataLoading = true;
+            vm.user.role='user';
             UserService.Create(vm.user)
                 .then(function (response) {
                     if (response.success) {

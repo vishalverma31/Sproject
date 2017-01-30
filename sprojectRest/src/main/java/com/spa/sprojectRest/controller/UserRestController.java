@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spa.sprojectBackend.DAO.BlogDAO;
+import com.spa.sprojectBackend.DAO.FriendDAO;
 import com.spa.sprojectBackend.DAO.UserDAO;
 import com.spa.sprojectBackend.model.User;
 
@@ -29,6 +30,8 @@ public class UserRestController {
 	@Autowired
 	BlogDAO blogDAO;
 	
+	@Autowired
+	FriendDAO friendDAO;
 	//-------------------Retrieve All Users--------------------------------------------------------
     
 		@GetMapping(value="/user/")
@@ -132,6 +135,7 @@ public class UserRestController {
 	          
 	            System.out.println("in URcontroller");
 	          if (userDAO.authenticate(user.getUsername(),user.getPassword())) {
+	        	  friendDAO.setOnline(user.getUserId());
 	        	  System.out.println("inside if of URcontroller");
 	        	  User u=userDAO.getUserByUsername(user.getUsername());
 	        	  return new ResponseEntity<User>(u,HttpStatus.OK);
@@ -139,7 +143,8 @@ public class UserRestController {
 	    	         
 	          return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
 	      }
-	  //------------------------ListAllUserExceptCurrentUser---------------------
+	  
+	  	//------------------------ListAllUserExceptCurrentUser---------------------
 	  	
 	  	@GetMapping(value="/user/friend/")
 	    public ResponseEntity<List<User>> listAllUserExceptCurrentUser(HttpSession session) {
@@ -151,4 +156,17 @@ public class UserRestController {
 	        }
 	        return new ResponseEntity<List<User>>(users, HttpStatus.OK);
 	    }
+	  	
+	  	//-------------------------Logout-----------------------------------
+	  	
+	  	@PutMapping(value="/user/logout")
+	  	public ResponseEntity<User> logout(HttpSession session) {
+	  		long loggedInUserID=(Long)session.getAttribute("loggedInUserID");
+	  		friendDAO.setOffline(loggedInUserID);
+	  		
+	  		session.invalidate();
+	  		
+	  		return new ResponseEntity<User>(HttpStatus.OK);
+	  		
+	  	}
 }

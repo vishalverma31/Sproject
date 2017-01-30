@@ -54,7 +54,7 @@ angular
 		};
 		
 		var startListener= function(){
-		   console.log("ChatService: receive")
+		   console.log("PChatService: receive")
 		   socket.stomp.subscribe(service.CHAT_TOPIC, function(data) { 
 		        listener.notify(getMessage(data.body));
 			   });

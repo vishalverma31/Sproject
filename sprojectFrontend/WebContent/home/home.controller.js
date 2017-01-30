@@ -12,7 +12,8 @@
         vm.user = null;
         vm.allUsers = [];
         vm.deleteUser = deleteUser;
-
+        vm.logout=logout;
+        
         initController();
 
         function initController() {
@@ -40,6 +41,16 @@
                 loadAllUsers();
             });
         }
+        
+        function logout(id) {
+        	UserService.Logout(id)
+        	.then( function () {
+        		$location.path("/login");
+        	});
+        	
+        }
+        
+        
     }
 
 })();
