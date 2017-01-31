@@ -24,6 +24,7 @@ public class UserDAOImpl implements UserDAO{
 	
 	public void addUser(User user) {
 		Session session=sessionFactory.getCurrentSession();
+		user.setRole("user");
 		session.saveOrUpdate(user);
 		
 	}
@@ -91,7 +92,7 @@ public class UserDAOImpl implements UserDAO{
 
 	public List<User> listUsersById(long userId) {
 		Session session=sessionFactory.getCurrentSession();
-		List<User> users=session.createQuery("from User where userId="+userId).getResultList();
+		List<User> users=session.createQuery("from User where userId!="+userId).getResultList();
 		return users;
 	}
 

@@ -42,8 +42,8 @@
             });
         }
         
-        function logout(id) {
-        	UserService.Logout(id)
+        function logout() {
+        	UserService.logout()
         	.then( function () {
         		$location.path("/login");
         	});

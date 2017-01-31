@@ -16,7 +16,7 @@
         service.Create = Create;
         service.Update = Update;
         service.Delete = Delete;
-        service.Logout=Logout;
+        service.logout=logout;
 
         return service;
 
@@ -76,7 +76,7 @@
         		 );
         }
         
-        function Logout(id) {
+        function logout() {
         	return $http.put(BASE_URL+'/user/logout')
         	.then(
         			handleSuccess,

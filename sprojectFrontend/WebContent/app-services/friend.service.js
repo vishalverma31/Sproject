@@ -8,7 +8,7 @@
     FriendService.$inject = ['$http','$q'];
     function FriendService($http,$q) {
         var service = {};
-        var BASE_URL='http://localhost:9080/sprojectRest';
+        var Base_URL='http://localhost:9080/sprojectRest';
         
         service.getMyFriends=getMyFriends;               //done
         service.getMyFriendRequests=getMyFriendRequests; //done
@@ -32,7 +32,7 @@
                              );
         }
         
-        function getMyFriends(){
+        function getMyFriends() {
             return $http.get(Base_URL+'/myFriends/')
                     .then(
                                  function(response){

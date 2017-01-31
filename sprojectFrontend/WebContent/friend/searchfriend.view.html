@@ -9,14 +9,14 @@
 	Search	
 	<p><input type="text" ng-model="search"></p>
 	
-	<div ng-repeat="user in vm.users | filter: search">
+	<div ng-repeat="user in vm.usersExceptCurrent | filter: search">
 	     <fielset>
 		     <p>Online: {{user.isOnline}} 
-			 <p>ID: ((user.userId))
+			 <p>ID: {{user.userId}}
 				&nbsp; &nbsp; &nbsp;
 				Name: {{user.username}}
 				&nbsp; &nbsp; &nbsp;
-                 <button type="button" ng-click="vm.sendFriendRequest()"
+                 <button type="button" ng-click="vm.sendFriendRequest(user.userId)"
 				   class="btn btn-warning btn-sm">Send Friend Request</button>
 		     </p>
 			 

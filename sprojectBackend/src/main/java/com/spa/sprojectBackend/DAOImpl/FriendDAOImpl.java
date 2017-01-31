@@ -53,7 +53,7 @@ public class FriendDAOImpl implements FriendDAO{
 
 	public List<Friend> listMyFriends(long id) {
 		Session session=sessionFactory.getCurrentSession();
-		List<Friend> friends=session.createQuery("from Friend where userId="+id+" and Status='Accepted'").getResultList();
+		List<Friend> friends=session.createQuery("from Friend where userId="+id+" and status='Accepted'").getResultList();
 		return friends;
 	}
 
@@ -84,6 +84,8 @@ public class FriendDAOImpl implements FriendDAO{
 		session.createQuery("update Friend set isOnline=false where friendId="+userId).executeUpdate();
 		
 	}
+
+	
 	
 
 }

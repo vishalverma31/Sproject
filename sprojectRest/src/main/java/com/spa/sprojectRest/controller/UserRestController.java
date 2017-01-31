@@ -32,6 +32,10 @@ public class UserRestController {
 	
 	@Autowired
 	FriendDAO friendDAO;
+	
+	@Autowired
+	HttpSession session;
+	
 	//-------------------Retrieve All Users--------------------------------------------------------
     
 		@GetMapping(value="/user/")
@@ -78,7 +82,7 @@ public class UserRestController {
 	            System.out.println("A User with name " + user.getUsername() + " already exist");
 	            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
 	        }
-	        user.setRole("user");
+	        
 	        userDAO.addUser(user);
 	  
 	       
@@ -131,13 +135,14 @@ public class UserRestController {
 	  //-------------------Authenticate a User--------------------------------------------------------
 	    
 	  	@PostMapping(value = "/user/authenticate")
-	      public ResponseEntity<User> authenticate(@RequestBody User user, HttpSession session) {
+	      public ResponseEntity<User> authenticate(@RequestBody User user) {
 	          
 	            System.out.println("in URcontroller");
 	          if (userDAO.authenticate(user.getUsername(),user.getPassword())) {
-	        	  System.out.println("inside if of URcontroller");
-	        	  friendDAO.setOnline(user.getUserId());
+	        	  System.out.println("inside if of Authenticate()");
+	        	  
 	        	  User u=userDAO.getUserByUsername(user.getUsername());
+	        	  friendDAO.setOnline(u.getUserId());
 	        	  session.setAttribute("loggedInUser", u);
 	        	  session.setAttribute("loggedInUserId", u.getUserId());
 	        	  
@@ -152,8 +157,8 @@ public class UserRestController {
 	  	//------------------------ListAllUserExceptCurrentUser---------------------
 	  	
 	  	@GetMapping(value="/user/friend/")
-	    public ResponseEntity<List<User>> listAllUserExceptCurrentUser(HttpSession session) {
-	  		long loggedInUserID=(Long)session.getAttribute("loggedInUserID");
+	    public ResponseEntity<List<User>> listAllUserExceptCurrentUser() {
+	  		long loggedInUserID=(Long)session.getAttribute("loggedInUserId");
 	  		
 	  		List<User> users = userDAO.listUsersById(loggedInUserID);
 	        if(users.isEmpty()){
@@ -165,7 +170,7 @@ public class UserRestController {
 	  	//-------------------------Logout-----------------------------------
 	  	
 	  	@PutMapping(value="/user/logout")
-	  	public ResponseEntity<User> logout(HttpSession session) {
+	  	public ResponseEntity<User> logout() {
 	  		long loggedInUserID=(Long)session.getAttribute("loggedInUserID");
 	  		friendDAO.setOffline(loggedInUserID);
 	  		

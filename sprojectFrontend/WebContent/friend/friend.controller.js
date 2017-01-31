@@ -12,23 +12,38 @@
 		vm.friend=null;
 		vm.friends=[];
 		vm.user=null;
-		vm.users=[];
+		vm.usersExceptCurrent=[];
 		vm.friendRequests=[];
 		
-		vm.sendFriendRequest=sendFriendRequest;
-		vm.acceptFriendRequest=acceptFriendRequest;
-		vm.rejectFriendRequest=rejectFriendRequest;
+		vm.sendFriendRequest=sendFriendRequest;			//done
+		vm.acceptFriendRequest=acceptFriendRequest;		//done
+		vm.rejectFriendRequest=rejectFriendRequest;		//done
 		//vm.updateFriendRequest=updateFriendRequest;
 		
-		vm.getMyFriends=getMyFriends;
-		vm.deleteFriend=deleteFriend;
+		vm.getMyFriends=getMyFriends;					//done
+		vm.deleteFriend=deleteFriend;					//done
 		
-		vm.fetchAllUsers=fetchAllUsers;
-		vm.startPrivateChat=startPrivateChat;
+		vm.fetchAllUsers=fetchAllUsers;					//done
+		vm.startPrivateChat=startPrivateChat;			//done
 		
 		fetchAllUsers();
 		getMyFriends();
 		getMyFriendRequests();
+		
+		function sendFriendRequest(friendId) {
+			console.log("=>FCtrl: Sending FriendRequest:"+friendId)
+			FriendService.sendFriendRequest(friendId)
+				.then(
+						function(d){
+								vm.friend=d;
+								alert("Friend Request sent")
+						}, function(errResponse){
+									console.error('=>FCtrl: Error while fetching friends')
+							}
+					);
+
+		}
+
 		
 		function getMyFriends(){
 			console.log("=>FCtrl: Getting my friends")
@@ -103,7 +118,7 @@
 			UserService.GetAllExceptCurrent()
 			.then(
 					function(d){
-						vm.users=d;
+						vm.usersExceptCurrent=d;
 					}, function(errResponse){
 							console.error('=>FCtrl: Error while fetching Users')
 					});
