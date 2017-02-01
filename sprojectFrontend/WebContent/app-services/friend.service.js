@@ -51,6 +51,7 @@
         }
         
         function acceptFriendRequest(friendId){
+        	console.log("=>FService: acceptFriendRequest:"+friendId)
             return $http.get(Base_URL+'/acceptFriend/'+friendId)
                     .then(
                                  function(response){

@@ -171,7 +171,7 @@ public class UserRestController {
 	  	
 	  	@PutMapping(value="/user/logout")
 	  	public ResponseEntity<User> logout() {
-	  		long loggedInUserID=(Long)session.getAttribute("loggedInUserID");
+	  		long loggedInUserID=(Long)session.getAttribute("loggedInUserId");
 	  		friendDAO.setOffline(loggedInUserID);
 	  		
 	  		session.invalidate();
