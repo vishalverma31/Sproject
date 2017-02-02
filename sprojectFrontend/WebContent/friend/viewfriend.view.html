@@ -8,7 +8,7 @@ Search For Friend
 <div ng-repeat="friend in vm.friends | filter: search">
 	<fieldset>
 			<p>Name: {{friend.friend.username}} &nbsp; &nbsp; &nbsp; Status: {{friend.status}}</p>
-			<a ng-click="vm.startPrivateChat(friend.friend.username)">Send Message</a>
+			<a ng-disabled="!friend.online" ng-click="vm.startPrivateChat(friend.friend.username)">Send Message</a>
 	</fieldset>
 </div>
 </div>

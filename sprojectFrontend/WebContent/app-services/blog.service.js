@@ -11,9 +11,13 @@
         var service = {};
 
         service.fetchAllBlogs = fetchAllBlogs;
+        service.fetchNewBlogs = fetchNewBlogs;
+        
         service.getBlog = getBlog;
+        service.approveBlog = approveBlog;
+        service.rejectBlog = rejectBlog;
+        
         service.createBlog = createBlog;
-       
         service.deleteBlog = deleteBlog;
 
         return service;
@@ -26,6 +30,19 @@
                         },
                       function(errResponse){
                            console.error('BService: Error fetching all Blogs');
+                           return $q.reject(errResponse);
+                       }
+                 );
+            }
+        
+        function fetchNewBlogs() {
+            return $http.get(BASE_URL+'/blog/new')
+              .then(
+                      function(response){
+                           return response.data;
+                        },
+                      function(errResponse){
+                           console.error('BService: Error fetching all New Blogs');
                            return $q.reject(errResponse);
                        }
                  );
@@ -70,6 +87,32 @@
                        }
                    );
             }
+           
+           function approveBlog(id) {
+               return $http.get(BASE_URL+'/approveblog/'+id)
+                 .then(
+                         function(response){
+                       	   return response.data;
+                           },
+                         function(errResponse){
+                              console.error('BService: Error while getting the Blog');
+                              return $q.reject(errResponse);
+                          }
+                      );
+               }
+           
+          function rejectBlog(id) {
+               return $http.get(BASE_URL+'/rejectblog/'+id)
+                  .then(
+                             function(response){
+                           	   return response.data;
+                               },
+                             function(errResponse){
+                                  console.error('BService: Error while getting the Blog');
+                                  return $q.reject(errResponse);
+                              }
+                          );
+                   }
 
 }
 

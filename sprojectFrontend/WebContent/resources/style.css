@@ -10,9 +10,13 @@
   }
   
   #div1{
-  		opacity: 0.5;
-	    filter: alpha(opacity=50);
+  	margin: 30px;
+  	background-color: f7f8f9;
+  	border: 2px solid black;
+  	opacity: 0.9;
+  	filter: alpha(opacity=80); /* For IE8 and earlier */
   }
+  
   #footer {
   position: absolute;
   left:0;

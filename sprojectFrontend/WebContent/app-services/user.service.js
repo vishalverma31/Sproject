@@ -79,13 +79,18 @@
         function logout() {
         	return $http.put(BASE_URL+'/user/logout')
         	.then(
-        			handleSuccess,
+        			null,
         			handleError('UserService: Error while Logging Out')
         		 );
         }
 
         // private functions
 
+        function handleLogout(res) {
+        	console.log("=>UService: handleLogout- "+res)
+        	return res.data;
+        }
+        
         function handleSuccess(res) {
             return res.data;
         }

@@ -24,11 +24,23 @@ public class BlogRestController {
 	@Autowired
 	BlogDAO blogDAO;
 	
-	//-------------------Retrieve All Blogs--------------------------------------------------------
+	//-------------------Retrieve Approved Blogs--------------------------------------------------------
     
 			@GetMapping(value="/blog/")
 		    public ResponseEntity<List<Blog>> listAllBlogs() {
 		        List<Blog> blogs = blogDAO.listBlogs();
+		        if(blogs.isEmpty()){
+		            return new ResponseEntity<List<Blog>>(HttpStatus.NO_CONTENT);
+	                 //You may decide to return HttpStatus.NOT_FOUND
+		        }
+		        return new ResponseEntity<List<Blog>>(blogs, HttpStatus.OK);
+		    }
+			
+	//-------------------Retrieve New Blogs--------------------------------------------------------
+		    
+			@GetMapping(value="/blog/new")
+		    public ResponseEntity<List<Blog>> listNewBlogs() {
+		        List<Blog> blogs = blogDAO.listNewBlogs();
 		        if(blogs.isEmpty()){
 		            return new ResponseEntity<List<Blog>>(HttpStatus.NO_CONTENT);
 	                 //You may decide to return HttpStatus.NOT_FOUND
@@ -94,5 +106,37 @@ public class BlogRestController {
 		        blogDAO.deleteBlog(blog);
 		        return new ResponseEntity<Blog>(HttpStatus.NO_CONTENT);
 		    } 
+		    
+	//-------------------Approve A Blog--------------------------------------------------------
+		   @GetMapping(value="/approveblog/{id}",produces=MediaType.APPLICATION_JSON_VALUE)
+		    public ResponseEntity<Blog> approveBlog(@PathVariable("id") long id) {
+			        System.out.println("Fetching Blog with id " + id);
+			        Blog blog = blogDAO.getBlogByBlogId(id);
+				        if (blog == null) {
+				            System.out.println("Blog with id " + id + " not found");
+				            return new ResponseEntity<Blog>(HttpStatus.NOT_FOUND);
+				        }
+				        
+				    blog.setBlogStatus("Approved");
+				    blogDAO.updateBlog(blog);
+				        
+		   	        return new ResponseEntity<Blog>(blog, HttpStatus.OK);
+		   }
+		   
+	//-------------------Reject A Blog--------------------------------------------------------
+		   @GetMapping(value="/rejectblog/{id}",produces=MediaType.APPLICATION_JSON_VALUE)
+		    public ResponseEntity<Blog> rejectBlog(@PathVariable("id") long id) {
+			        System.out.println("Fetching Blog with id " + id);
+			        Blog blog = blogDAO.getBlogByBlogId(id);
+				        if (blog == null) {
+				            System.out.println("Blog with id " + id + " not found");
+				            return new ResponseEntity<Blog>(HttpStatus.NOT_FOUND);
+				        }
+				        
+				    blog.setBlogStatus("Rejected");
+				    blogDAO.updateBlog(blog);
+				        
+		   	        return new ResponseEntity<Blog>(blog, HttpStatus.OK);
+		   }
 		   
 }

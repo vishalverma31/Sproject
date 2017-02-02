@@ -5,8 +5,8 @@
         .module('app')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['UserService', '$rootScope'];
-    function HomeController(UserService, $rootScope) {
+    HomeController.$inject = ['UserService', '$rootScope','$location','AuthenticationService'];
+    function HomeController(UserService, $rootScope,$location,AuthenticationService) {
         var vm = this;
 
         vm.user = null;
@@ -45,8 +45,12 @@
         function logout() {
         	UserService.logout()
         	.then( function () {
+        		AuthenticationService.ClearCredentials();
         		$location.path("/login");
-        	});
+        		}, function(errResponse){
+					console.error('=>HomeCtrl: Error while Logging Out')
+				}
+        	);
         	
         }
         

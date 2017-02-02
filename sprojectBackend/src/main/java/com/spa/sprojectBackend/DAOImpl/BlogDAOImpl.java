@@ -22,6 +22,8 @@ public class BlogDAOImpl implements BlogDAO {
 	
 	public void addBlog(Blog blog) {
 		Session session=sessionFactory.getCurrentSession();
+		blog.setBlogStatus("New");
+		
 		session.saveOrUpdate(blog);
 	}
 
@@ -38,7 +40,13 @@ public class BlogDAOImpl implements BlogDAO {
 
 	public List<Blog> listBlogs() {
 		Session session=sessionFactory.getCurrentSession();
-		List<Blog> blogs=session.createQuery("from Blog").getResultList();
+		List<Blog> blogs=session.createQuery("from Blog where blogStatus='Approved'").getResultList();
+		return blogs;
+	}
+	
+	public List<Blog> listNewBlogs() {
+		Session session=sessionFactory.getCurrentSession();
+		List<Blog> blogs=session.createQuery("from Blog where blogStatus='New'").getResultList();
 		return blogs;
 	}
 

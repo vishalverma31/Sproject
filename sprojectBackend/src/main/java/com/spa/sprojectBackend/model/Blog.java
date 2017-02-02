@@ -20,6 +20,7 @@ public class Blog {
 	private String blogTitle;
 	private String blogContent;
 	private Date dateTime;
+	private String blogStatus;
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="userId")
 	private User user;
@@ -28,6 +29,7 @@ public class Blog {
 		
 	}
 	
+
 	public long getBlogId() {
 		return blogId;
 	}
@@ -52,14 +54,20 @@ public class Blog {
 		this.blogContent = blogContent;
 	}
 	
-	
-
 	public Date getDateTime() {
 		return dateTime;
 	}
 
 	public void setDateTime(Date dateTime) {
 		this.dateTime = dateTime;
+	}
+	
+	public String getBlogStatus() {
+		return blogStatus;
+	}
+
+	public void setBlogStatus(String blogStatus) {
+		this.blogStatus = blogStatus;
 	}
 
 	public User getUser() {

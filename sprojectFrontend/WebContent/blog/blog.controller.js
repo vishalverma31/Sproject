@@ -11,8 +11,14 @@
 
          vm.blog = null;
          vm.allBlogs = [];
+         vm.allNewBlogs = [];
+         
          vm.getBlog = getBlog;
+         vm.approveBlog = approveBlog;
+         vm.rejectBlog = rejectBlog;
+         
          vm.fetchAllBlogs = fetchAllBlogs;
+         vm.fetchNewBlogs = fetchNewBlogs;
          
          vm.updateBlog = updateBlog;
          vm.blogSubmit = blogSubmit;
@@ -23,6 +29,7 @@
          console.log('UserName in Blog Ctrl:'+$rootScope.currentUser);
 
          vm.fetchAllBlogs();
+         vm.fetchNewBlogs();
          
          function getBlog(id){
         	   console.log(">>Getting Blog:"+id)
@@ -37,7 +44,34 @@
         	                      }
          );
          }
-        	    
+         
+         function approveBlog(id){
+      	   console.log(">>Approving Blog:"+id)
+      	    BlogService.approveBlog(id)
+      	       .then(
+      	                      function() {
+      	                    	  vm.fetchNewBlogs();
+      	                          $location.path('/listnewblogs');
+      	                      },
+      	                      function(errResponse){
+      	                          console.error('BCtrl: Error while fetching the Blog');
+      	                      }
+      	       		);
+         }	    
+         
+         function rejectBlog(id){
+        	   console.log(">>Rejecting Blog:"+id)
+        	    BlogService.rejectBlog(id)
+        	       .then(
+        	                      function() {
+        	                    	  vm.fetchNewBlogs();
+        	                          $location.path('/listnewblogs');
+        	                      },
+        	                      function(errResponse){
+        	                          console.error('BCtrl: Error while fetching the Blog');
+        	                      }
+        	       		);
+           }
         	    
          function fetchAllBlogs(){
         	  	   BlogService.fetchAllBlogs()
@@ -50,8 +84,22 @@
         	    	                      function(errResponse){
         	    	                          console.error('BCtrl: Error while fetching All Blogs');
         	    	                      }
-         );
-         }    	         
+        	    	       		);
+         }
+         
+         function fetchNewBlogs(){
+  	  	   BlogService.fetchNewBlogs()
+  	    	       .then(
+  	    	                      function(d) {
+  	    	                          console.log('BCtrl: inside fetchNewBlogs function')
+  	    	                          vm.allNewBlogs=d;
+  	    	                          console.log(vm.allBlogs);
+  	    	                      },
+  	    	                      function(errResponse){
+  	    	                          console.error('BCtrl: Error while fetching All New Blogs');
+  	    	                      }
+  	    	            );
+         }
         
         function createBlog(blog){
         	    	BlogService.createBlog(blog)

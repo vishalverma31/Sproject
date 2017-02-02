@@ -10,6 +10,7 @@ public interface BlogDAO {
 	public void updateBlog(Blog blog);
 	public void deleteBlog(Blog blog);
 	public List<Blog> listBlogs();
+	public List<Blog> listNewBlogs();
 	public Blog getBlogByBlogId(long blogId);
 	public void deleteBlogByUserId(long userId);
 	
