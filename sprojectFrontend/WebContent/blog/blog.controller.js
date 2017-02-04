@@ -10,6 +10,7 @@
     	 var vm = this;
 
          vm.blog = null;
+         
          vm.allBlogs = [];
          vm.allNewBlogs = [];
          
@@ -32,7 +33,7 @@
          vm.fetchNewBlogs();
          
          function getBlog(id){
-        	   console.log(">>Getting Blog:"+id)
+        	   console.log(">>BCtrl: Getting Blog:"+id)
         	    BlogService.getBlog(id)
         	       .then(
         	                      function(d) {
@@ -46,11 +47,11 @@
          }
          
          function approveBlog(id){
-      	   console.log(">>Approving Blog:"+id)
+      	   console.log(">>BCtrl: Approving Blog:"+id)
       	    BlogService.approveBlog(id)
       	       .then(
       	                      function() {
-      	                    	  vm.fetchNewBlogs();
+      	                    	  fetchNewBlogs();
       	                          $location.path('/listnewblogs');
       	                      },
       	                      function(errResponse){
@@ -60,11 +61,11 @@
          }	    
          
          function rejectBlog(id){
-        	   console.log(">>Rejecting Blog:"+id)
+        	   console.log(">>BCtrl: Rejecting Blog:"+id)
         	    BlogService.rejectBlog(id)
         	       .then(
         	                      function() {
-        	                    	  vm.fetchNewBlogs();
+        	                    	  fetchNewBlogs();
         	                          $location.path('/listnewblogs');
         	                      },
         	                      function(errResponse){
@@ -74,6 +75,7 @@
            }
         	    
          function fetchAllBlogs(){
+        	 console.log(">>BCtrl: fetching Approved Blogs")
         	  	   BlogService.fetchAllBlogs()
         	    	       .then(
         	    	                      function(d) {
@@ -88,6 +90,7 @@
          }
          
          function fetchNewBlogs(){
+        	 console.log(">>BCtrl: fetching New Blogs")
   	  	   BlogService.fetchNewBlogs()
   	    	       .then(
   	    	                      function(d) {
@@ -102,6 +105,7 @@
          }
         
         function createBlog(blog){
+        	console.log(">>BCtrl: create Blog")
         	    	BlogService.createBlog(blog)
         	    	    	       .then(
         	    	    	                      vm.fetchAllBlogs,
@@ -112,6 +116,7 @@
         }        	    	    	 
        
         function updateBlog(blog, id){
+        	console.log(">>BCtrl: update Blog")
             	   BlogService.updateBlog(blog, id)
            	    	       .then(
            	                      vm.fetchAllBlogs,
@@ -122,6 +127,7 @@
         }       	    	     
 
         function blogSubmit() {
+        	
            	    	   console.log('BCtrl: Saving New Blog', vm.blog); 
            	    	   console.log($rootScope.currentUser);
            	    	   vm.blog.user=$rootScope.currentUser;
@@ -131,6 +137,7 @@
        }
 
        function edit(id) {
+    	   console.log(">>BCtrl: edit Blog")
            	    	   console.log('BCtrl: Id to be edited', id); 
            	    	   for(var i=0;i<vm.allBlogs.length;i++){
            	    	      if(vm.allBlogs[i].id === id) {
@@ -142,6 +149,7 @@
            	    	
 
        function remove(id) {
+    	   console.log(">>BCtrl: remove Blog")
            	    	   console.log('BCtrl: Id to be deleted', id); 
            	    	      if(vm.blog.id === id) {
            	    	          vm.reset();
@@ -150,6 +158,7 @@
         }
 
        function blogReset(){
+    	   console.log(">>BCtrl: Reset Blog Form")
            	    	      vm.blog={};
            	    	      $scope.myBlogForm.$setPristine();
         }

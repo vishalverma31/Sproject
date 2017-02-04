@@ -3,7 +3,10 @@ package com.spa.sprojectRest.controller;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spa.sprojectBackend.DAO.BlogDAO;
+import com.spa.sprojectBackend.DAO.UserDAO;
 import com.spa.sprojectBackend.model.Blog;
+import com.spa.sprojectBackend.model.BlogComment;
 
 @RestController
 public class BlogRestController {
@@ -24,6 +29,9 @@ public class BlogRestController {
 	@Autowired
 	BlogDAO blogDAO;
 	
+	@Autowired
+	UserDAO userDAO;
+		
 	//-------------------Retrieve Approved Blogs--------------------------------------------------------
     
 			@GetMapping(value="/blog/")
@@ -64,7 +72,7 @@ public class BlogRestController {
 		    
 			@PostMapping(value = "/blog/")
 		    public ResponseEntity<Void> createBlog(@RequestBody Blog blog) {
-		         
+		        				
 		        blog.setDateTime(new Date()); 
 		        blogDAO.addBlog(blog);
 		  
@@ -138,5 +146,21 @@ public class BlogRestController {
 				        
 		   	        return new ResponseEntity<Blog>(blog, HttpStatus.OK);
 		   }
+		 
+	//---------------------------adding Comment on BLOG-------------------------------------
+			@PostMapping(value = "/addComment/{blogId}")
+		    public ResponseEntity<BlogComment> BlogComment(@PathVariable("blogId") long blogId,HttpSession session) 
+			{
+			  long loggedInUserId=(Long)session.getAttribute("loggedInUserId");
+			  
+			  BlogComment comment=new BlogComment();
+			  comment.setBlog(blogDAO.getBlogByBlogId(blogId));
+			  comment.setUser(userDAO.getUserByUserId(loggedInUserId));
+			  comment.setTimeComment(new Date());
+			  
+			  blogDAO.addBlogComment(comment);
+			  
+			  return new ResponseEntity<BlogComment>(HttpStatus.CREATED);
+			}
 		   
 }

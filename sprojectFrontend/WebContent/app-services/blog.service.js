@@ -23,6 +23,7 @@
         return service;
         
         function fetchAllBlogs() {
+        	console.log("BService: fetchAllBlogs")
             return $http.get(BASE_URL+'/blog/')
               .then(
                       function(response){
@@ -36,6 +37,7 @@
             }
         
         function fetchNewBlogs() {
+        	console.log("BService: fetchNewBlogs")
             return $http.get(BASE_URL+'/blog/new')
               .then(
                       function(response){
@@ -49,6 +51,7 @@
             }
         
            function createBlog(blog) {
+        	  console.log("BService: create Blog")
             return $http.post(BASE_URL+'/blog/', blog)
               .then(
                       function(response){
@@ -62,6 +65,7 @@
             }
            
            function deleteBlog(id) {
+        	   console.log("BService: Delete Blog")
             return $http.delete(BASE_URL+'/blog/'+id)
               .then(
                       function(response){
@@ -75,6 +79,7 @@
             }
            
            function getBlog(id) {
+        	   console.log("BService: getBlog")
             return $http.get(BASE_URL+'/blog/'+id)
               .then(
                       function(response){
@@ -89,6 +94,7 @@
             }
            
            function approveBlog(id) {
+        	   console.log("BService: ApproveBlog")
                return $http.get(BASE_URL+'/approveblog/'+id)
                  .then(
                          function(response){
@@ -102,6 +108,7 @@
                }
            
           function rejectBlog(id) {
+        	  console.log("BService: RejectBlog")
                return $http.get(BASE_URL+'/rejectblog/'+id)
                   .then(
                              function(response){

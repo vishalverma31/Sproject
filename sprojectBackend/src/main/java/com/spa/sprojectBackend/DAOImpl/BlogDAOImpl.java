@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.spa.sprojectBackend.DAO.BlogDAO;
 import com.spa.sprojectBackend.model.Blog;
+import com.spa.sprojectBackend.model.BlogComment;
 
 @Repository("blogDAO")
 @EnableTransactionManagement
@@ -61,6 +62,12 @@ public class BlogDAOImpl implements BlogDAO {
 		Session session=sessionFactory.getCurrentSession();
 		String hql = "delete from Blog where userId="+userId;
 		session.createQuery(hql).executeUpdate();
+		
+	}
+
+	public void addBlogComment(BlogComment comment) {
+		Session session=sessionFactory.getCurrentSession();
+		session.saveOrUpdate(comment);
 		
 	}
 

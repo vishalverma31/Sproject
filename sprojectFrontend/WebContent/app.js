@@ -115,6 +115,7 @@ console.log('inside app.js')
             
             var loggedIn = $rootScope.currentUser.username;
             var role = $rootScope.currentUser.role;
+            
             console.log('logged In:'+loggedIn+' ['+role+']');
             
             if (restrictedPage && !loggedIn) {

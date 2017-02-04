@@ -3,6 +3,7 @@ package com.spa.sprojectBackend.DAO;
 import java.util.List;
 
 import com.spa.sprojectBackend.model.Blog;
+import com.spa.sprojectBackend.model.BlogComment;
 
 
 public interface BlogDAO {
@@ -13,5 +14,6 @@ public interface BlogDAO {
 	public List<Blog> listNewBlogs();
 	public Blog getBlogByBlogId(long blogId);
 	public void deleteBlogByUserId(long userId);
+	public void addBlogComment(BlogComment comment);
 	
 }
