@@ -14,6 +14,7 @@ public interface BlogDAO {
 	public List<Blog> listNewBlogs();
 	public Blog getBlogByBlogId(long blogId);
 	public void deleteBlogByUserId(long userId);
+	public List<BlogComment> commentListByBlogId(long BlogId);
 	public void addBlogComment(BlogComment comment);
 	
 }

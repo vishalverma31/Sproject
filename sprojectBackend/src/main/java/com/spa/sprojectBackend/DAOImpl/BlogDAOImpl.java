@@ -71,4 +71,10 @@ public class BlogDAOImpl implements BlogDAO {
 		
 	}
 
+	public List<BlogComment> commentListByBlogId(long BlogId) {
+		Session session=sessionFactory.getCurrentSession();
+		List<BlogComment> comments= session.createQuery("from BlogComment where blogId="+BlogId).getResultList();
+		return comments;
+	}
+
 }

@@ -148,13 +148,13 @@ public class BlogRestController {
 		   }
 		 
 	//---------------------------adding Comment on BLOG-------------------------------------
-			@PostMapping(value = "/addComment/{blogId}")
-		    public ResponseEntity<BlogComment> BlogComment(@PathVariable("blogId") long blogId,HttpSession session) 
+			@PostMapping(value = "/addComment/")
+		    public ResponseEntity<BlogComment> BlogComment(@RequestBody Blog blog,HttpSession session) 
 			{
 			  long loggedInUserId=(Long)session.getAttribute("loggedInUserId");
 			  
 			  BlogComment comment=new BlogComment();
-			  comment.setBlog(blogDAO.getBlogByBlogId(blogId));
+			  
 			  comment.setUser(userDAO.getUserByUserId(loggedInUserId));
 			  comment.setTimeComment(new Date());
 			  
@@ -162,5 +162,17 @@ public class BlogRestController {
 			  
 			  return new ResponseEntity<BlogComment>(HttpStatus.CREATED);
 			}
+			
+	//-------------------Retrieve Blog Comments By BlogId--------------------------------------------------------
+		    
+			@GetMapping(value="/blogComment/{blogId}")
+		    public ResponseEntity<List<BlogComment>> listBlogComments(@PathVariable("blogId") long blogId) {
+		        List<BlogComment> blogComments = blogDAO.commentListByBlogId(blogId);
+		        if(blogComments.isEmpty()){
+		            return new ResponseEntity<List<BlogComment>>(HttpStatus.NO_CONTENT);
+	                 //You may decide to return HttpStatus.NOT_FOUND
+		        }
+		        return new ResponseEntity<List<BlogComment>>(blogComments, HttpStatus.OK);
+		    }
 		   
 }

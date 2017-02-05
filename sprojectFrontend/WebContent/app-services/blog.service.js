@@ -12,15 +12,45 @@
 
         service.fetchAllBlogs = fetchAllBlogs;
         service.fetchNewBlogs = fetchNewBlogs;
+        service.fetchAllBlogComments = fetchAllBlogComments;
         
         service.getBlog = getBlog;
         service.approveBlog = approveBlog;
         service.rejectBlog = rejectBlog;
         
         service.createBlog = createBlog;
+        service.createBlogComment = createBlogComment;
         service.deleteBlog = deleteBlog;
 
         return service;
+        
+        function createBlogComment(blogComment) {
+      	  console.log("BService: create BlogComment")
+          return $http.post(BASE_URL+'/addComment/', blogComment)
+            .then(
+                    function(response){
+                         return response.data;
+                      },
+                    function(errResponse){
+                         console.error('BService: Error creating the Blog');
+                         return $q.reject(errResponse);
+                     }
+               );
+          }
+        
+        function fetchAllBlogComments(blogId) {
+        	console.log("BService: fetchAllBlogComments")
+            return $http.get(BASE_URL+'/blogComment/'+blogId)
+              .then(
+                      function(response){
+                           return response.data;
+                        },
+                      function(errResponse){
+                           console.error('BService: Error fetching all BlogComments');
+                           return $q.reject(errResponse);
+                       }
+                 );
+            }
         
         function fetchAllBlogs() {
         	console.log("BService: fetchAllBlogs")

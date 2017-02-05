@@ -8,4 +8,16 @@
 	<br>
     <label>{{selectedBlog.blogContent}}</label>
 </div>
+  
+  <h2>Comments:</h2>
+  <div ng-repeat="blogComment in vm.allBlogComments" ng-init="vm.fetchAllBlogComments(selectedBlog.blogId)">
+     <p>{{blogComment.blogComment}} - Written By: {{blog.user.username}}</p>
+  </div>
+  <form ng-submit="vm.commentSubmit(selectedBlog)" name="myCommentForm" id="myCommentForm">
+    <div class="form-group">
+      <label for="comment">Comment:</label>
+      <textarea ng-model="vm.blogComment.blogComment" class="form-control input-lg" rows="5" id="comment"></textarea>
+      <input type="submit" value="add Comment" class="btn btn-primary btn-sm" />
+    </div>
+   </form>
 </div>

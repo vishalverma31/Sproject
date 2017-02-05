@@ -22,11 +22,21 @@ public class BlogComment {
 	@JoinColumn(name="userId")
 	private User user;
 	
+	private String blogComment;
+	
 	@ManyToOne
 	@JoinColumn(name="blogId")
 	private Blog blog;
 	
 	private Date timeComment;
+	
+	public String getBlogComment() {
+		return blogComment;
+	}
+
+	public void setBlogComment(String blogComment) {
+		this.blogComment = blogComment;
+	}
 
 	public long getCommentId() {
 		return commentId;

@@ -10,9 +10,11 @@
     	 var vm = this;
 
          vm.blog = null;
+         vm.blogComment = null;
          
          vm.allBlogs = [];
          vm.allNewBlogs = [];
+         vm.allBlogComments = [];
          
          vm.getBlog = getBlog;
          vm.approveBlog = approveBlog;
@@ -20,6 +22,7 @@
          
          vm.fetchAllBlogs = fetchAllBlogs;
          vm.fetchNewBlogs = fetchNewBlogs;
+         vm.fetchAllBlogComments = fetchAllBlogComments;
          
          vm.updateBlog = updateBlog;
          vm.blogSubmit = blogSubmit;
@@ -27,10 +30,15 @@
          vm.remove = remove;
          vm.blogReset = blogReset;
          
+         vm.commentSubmit=commentSubmit;
+         vm.commentReset=commentSubmit;
+
+         
          console.log('UserName in Blog Ctrl:'+$rootScope.currentUser);
 
          vm.fetchAllBlogs();
          vm.fetchNewBlogs();
+         
          
          function getBlog(id){
         	   console.log(">>BCtrl: Getting Blog:"+id)
@@ -103,6 +111,21 @@
   	    	                      }
   	    	            );
          }
+         
+         function fetchAllBlogComments(blogId){
+        	 console.log(">>BCtrl: fetching All Blog Comments")
+        	  	   BlogService.fetchAllBlogComments(blogId)
+        	    	       .then(
+        	    	                      function(d) {
+        	    	                          console.log('BCtrl: inside fetchAllBlogComments function')
+        	    	                          vm.allBlogComments=d;
+        	    	                          console.log(vm.allBlogComments);
+        	    	                      },
+        	    	                      function(errResponse){
+        	    	                          console.error('BCtrl: Error while fetching All Blog Comments');
+        	    	                      }
+        	    	       		);
+         }
         
         function createBlog(blog){
         	console.log(">>BCtrl: create Blog")
@@ -131,6 +154,7 @@
            	    	   console.log('BCtrl: Saving New Blog', vm.blog); 
            	    	   console.log($rootScope.currentUser);
            	    	   vm.blog.user=$rootScope.currentUser;
+           	    	   vm.blog.blogContent=document.getElementById("blogContent").value;
            	    	   createBlog(vm.blog);
 
            	    	vm.blogReset();
@@ -162,6 +186,34 @@
            	    	      vm.blog={};
            	    	      $scope.myBlogForm.$setPristine();
         }
+       
+       function commentSubmit(selectedBlog) {
+       	
+	    	   console.log('BCtrl: Saving New Blog Comment', vm.blogComment); 
+	    	   console.log($rootScope.currentUser);
+	    	   vm.blogComment.user=$rootScope.currentUser;
+	    	   vm.blogComment.blog=selectedBlog;
+		   createBlogComment(vm.blogComment);
+
+	    	vm.commentReset();
+       }
+
+       function createBlogComment(blogComment){
+    	   console.log(">>BCtrl: create BlogComment")
+    	BlogService.createBlogComment(blogComment)
+    	    	       .then(
+    	    	                      vm.fetchAllBlogComments,
+    	    	                      function(errResponse){
+    	    	                          console.error('BCtrl: Error while creating BlogComment.');
+    	    	                      }
+    	    	       		);
+       }
+
+       function commentReset(){
+    	   console.log(">>BCtrl: Reset BlogComment Form")
+	    	      vm.blogComment={};
+	    	      $scope.myCommentForm.$setPristine();
+       }
 }
 
 })();
