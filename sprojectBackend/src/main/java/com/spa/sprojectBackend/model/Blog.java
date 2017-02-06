@@ -14,6 +14,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="BLOG", schema="DBSPA")
 public class Blog {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private long blogId;
