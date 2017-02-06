@@ -1,0 +1,65 @@
+<div>
+      <div ng-show="currentUser==''">
+           <div class="alert alert-danger fade in">
+		        <div>
+				    You are not logged in.. Please Login <a href="#/login"> here </a>
+				</div>
+				
+				<div>
+				    If you are not registered, you can register <a href="#/register"> here </a>
+				</div>
+		   
+		   </div>
+	  </div>
+	  
+	  <div ng-hide="currentUser==''">
+	       <div class="generic-container">
+		        <form ng-submit="vm.eventSubmit()" name="myEventForm" id="myEventForm" class="form-horizontal" role="form">
+				      <label>Please fill the Event details..</label>
+					  
+					  <div class="row">
+					       <div class="form-group col-md-12">
+						   <label class="col-md-12 control-lable" for="eventTitle">Event's Name</label>
+						      <div class="col-md-7">
+						        <input type="text" ng-model="vm.event.eventTitle" id="eventTitle"
+								   class="title form-control input-sm"
+								   placeholder="Enter Event's Name"
+								   required ng-minlength="5" />
+						      </div>
+						   </div>
+					  </div>
+					  
+					  <div class="row">
+						<div class="form-group col-md-12">
+						<label class="col-md-12 control-lable" for="eventDateTime">Date And Time:</label>
+		     				<div class="col-md-7">
+							<input type="datetime-local" ng-model="vm.event.eventDateTime" id="eventDateTime">
+							</div>
+						</div>
+					</div>
+					  
+					  <div class="row">
+						<div class="form-group col-md-12">
+						<label class="col-md-12 control-lable" for="description">Description:</label>
+		     				<div class="col-md-7">
+								<textarea rows="20" cols="100" form="myEventForm"
+										ng-model="vm.event.eventDescription"
+ 										id="eventDescription" class="form-control input-sm"
+										placeholder="What's Event About?" required 
+										ng-minlength="50" ng-maxlength="500">
+								</textarea>  
+							</div>
+						</div>
+					</div>
+					  
+					  <div class="row">
+					       <div class="form-actions floatRight">
+						       <input type="submit" value="Create Event" class="btn btn-primary btn-sm" />
+							   <button type="button" ng-click="vm.eventReset()"
+                                      class="btn btn-warning btn-sm">Reset the form</button>
+						   </div>
+					  </div>
+				</form>	  
+		   </div>	  
+	  </div>
+</div>

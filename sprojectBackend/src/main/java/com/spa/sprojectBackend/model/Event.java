@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Event", schema="DBSPA")
+@Table(name="EventDetails", schema="DBSPA")
 public class Event {
 	
 	@Id
@@ -24,6 +24,8 @@ public class Event {
 	private String eventTitle;
 	private String eventDescription;
 	private Date eventDateTime;
+	
+	private Date eventCreatedOn;
 	
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="userId")
@@ -79,6 +81,14 @@ public class Event {
 
 	public void setJoinedBy(List<User> joinedBy) {
 		this.joinedBy = joinedBy;
+	}
+
+	public Date getEventCreatedOn() {
+		return eventCreatedOn;
+	}
+
+	public void setEventCreatedOn(Date eventCreatedOn) {
+		this.eventCreatedOn = eventCreatedOn;
 	}
 	
 	

@@ -1,0 +1,11 @@
+<div class="container">
+Welcome To Events
+<div ng-repeat="event in vm.allEvents">
+    <a href="#" ng-click="vm.getEvent(event.eventId)"> Title: {{event.eventTitle}} - Created By: {{event.createdBy.username}}</a>
+	<p>Created on: {{event.eventCreatedOn | date:'MMM d, y hh:mm a'}}
+	 <br>
+	   Date of Event: {{event.eventDateTime | date:'MMM d, y hh:mm a'}}
+	</p>
+	<br>
+</div>
+</div>

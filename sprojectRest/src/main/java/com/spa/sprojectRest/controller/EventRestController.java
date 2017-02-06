@@ -1,5 +1,6 @@
 package com.spa.sprojectRest.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -27,7 +28,8 @@ public class EventRestController {
     
 	@PostMapping(value = "/event/")
     public ResponseEntity<Void> createBlog(@RequestBody Event event) {
-        eventDAO.addEvent(event);
+        event.setEventCreatedOn(new Date());
+		eventDAO.addEvent(event);
         
         return new ResponseEntity<Void>(HttpStatus.CREATED);
     }
@@ -73,10 +75,11 @@ public class EventRestController {
 	    }
 	
 	//---------------------------Join the Event-------------------------------------
-	@PostMapping(value = "/joinEvent/{eventId}")
+	@GetMapping(value = "/joinEvent/{eventId}")
 	public ResponseEntity<Event> joinEvent(@PathVariable("eventId") long eventId,HttpSession session) 
 	{
 	  long loggedInUserId=(Long)session.getAttribute("loggedInUserId");
+	  
 	  eventDAO.joinEvent(loggedInUserId, eventId);
 	  
 	  return new ResponseEntity<Event>(HttpStatus.CREATED);

@@ -1,0 +1,11 @@
+<div class="container">
+<div class="form-group">
+    <label>{{selectedEvent.eventTitle}}</label> 
+	<br>
+	Created by: <label>{{selectedEvent.createdBy.username}}</label>
+	on <label>{{selectedEvent.eventCreatedOn | date:'MMM d, y hh:mm a'}}</label>
+	<br>
+	Date And Time of Event:{{selectedEvent.eventDateTime | date:'MMM d, y hh:mm a'}}
+	<br>
+    <label>{{selectedEvent.eventDescription}}</label>
+</div>
