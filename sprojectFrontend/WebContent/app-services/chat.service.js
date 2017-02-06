@@ -34,6 +34,14 @@ angular
 			messageIds.push(ids);
 		};
 		
+		var initialize= function() {
+		    console.log("ChatService: initialize")
+			socket.client= new SockJS(service.SOCKET_URL);
+			socket.stomp= Stomp.over(socket.client);
+			socket.stomp.connect({}, startListener);
+			socket.stomp.onclose= reconnect;
+		};
+		
 		var reconnect= function() {
 		console.log("ChatService: reconnect")
 		$timeout(function() {
@@ -56,14 +64,6 @@ angular
 		   socket.stomp.subscribe(service.CHAT_TOPIC, function(data) { 
 		        listener.notify(getMessage(data.body));
 			   });
-		};
-		
-		var initialize= function() {
-		    console.log("ChatService: initialize")
-			socket.client= new SockJS(service.SOCKET_URL);
-			socket.stomp= Stomp.over(socket.client);
-			socket.stomp.connect({}, startListener);
-			socket.stomp.onclose= reconnect;
 		};
 		
 		initialize();

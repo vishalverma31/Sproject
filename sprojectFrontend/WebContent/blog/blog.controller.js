@@ -193,7 +193,8 @@
 	    	   console.log($rootScope.currentUser);
 	    	   vm.blogComment.user=$rootScope.currentUser;
 	    	   vm.blogComment.blog=selectedBlog;
-		   createBlogComment(vm.blogComment);
+	    	   vm.blogComment.blogComment==document.getElementById("comment").value;
+	    	   createBlogComment(vm.blogComment);
 
 	    	vm.commentReset();
        }

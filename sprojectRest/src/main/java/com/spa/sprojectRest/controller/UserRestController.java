@@ -180,4 +180,16 @@ public class UserRestController {
 	  		return new ResponseEntity<User>(HttpStatus.OK);
 	  		
 	  	}
+	  	
+	  	//------------------------Make User Admin-----------------------
+	  	
+	  	@PutMapping(value="/user/makeAdmin/{id}")
+	  	public ResponseEntity<User> makeAdmin(@PathVariable("id") long id) {
+			User u=userDAO.getUserByUserId(id);
+			u.setRole("admin");
+			
+			userDAO.updateUser(u);
+	  		
+	  		return new ResponseEntity<User>(HttpStatus.OK);	  		
+	  	}
 }

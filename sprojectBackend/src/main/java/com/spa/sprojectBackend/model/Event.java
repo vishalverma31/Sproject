@@ -31,10 +31,6 @@ public class Event {
 	@JoinColumn(name="userId")
 	private User createdBy;
 	
-	@OneToMany(fetch=FetchType.EAGER,mappedBy="event",cascade=CascadeType.ALL)
-	@JoinColumn(name="userId")
-	private List<User> joinedBy;
-
 	public long getEventId() {
 		return eventId;
 	}
@@ -75,14 +71,7 @@ public class Event {
 		this.createdBy = createdBy;
 	}
 
-	public List<User> getJoinedBy() {
-		return joinedBy;
-	}
-
-	public void setJoinedBy(List<User> joinedBy) {
-		this.joinedBy = joinedBy;
-	}
-
+	
 	public Date getEventCreatedOn() {
 		return eventCreatedOn;
 	}

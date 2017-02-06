@@ -9,7 +9,7 @@
   
   <script src="https://use.fontawesome.com/034feea29c.js"></script>
   
-  <link rel="stylesheet" type="text/css" href="resources/style.css">
+  <link rel="stylesheet" type="text/css" href="resources/styles.css">
   
 </head>
 <body>
@@ -34,7 +34,7 @@
         <li><a href="#!/searchjob">List of Jobs</a></li>
       </ul>
     </li>
-	<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="@"><i class="fa fa-users fa-fw" aria-hidden="true"></i>&nbsp; Friends <span class="caret"> </span></a>
+	<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-users fa-fw" aria-hidden="true"></i>&nbsp; Friends <span class="caret"> </span></a>
       <ul class="dropdown-menu">
         <li><a href="#!/searchfriend">Search for Friends</a></li>
         <li><a href="#!/friendrequest">My Friend Requests</a></li>
@@ -44,8 +44,9 @@
 	<li><a href="#!/chat_forum"><i class="fa fa-comments fa-fw" aria-hidden="true"></i>&nbsp; Chat Forum</a></li>      
   </ul>
   <ul class="nav navbar-nav navbar-right">
-      <li><a href="#!/login"><span class="glyphicon glyphicon-user"></span> Login</a></li>
-      <li><a href="#!/register"><span class="glyphicon glyphicon-log-in"></span> Sign Up </a></li>
+      <li><a href="#!/login" ng-show="currentUser==''"><span class="glyphicon glyphicon-user"></span> Login</a></li>
+      <li><a href="#!/register" ng-show="currentUser==''"><span class="glyphicon glyphicon-log-in"></span> Sign Up </a></li>
+	  <li><a href="#" ng-show="currentUser!=''" ng-click="vm.logout()"><i class="fa fa-sign-out fa-fw" aria-hidden="true"></i>&nbsp; Logout</a></li>  
   </ul>
 </div>
 </nav>
@@ -76,6 +77,7 @@
     
     <script src="app-services/job.service.js"></script>
 	<script src="app-services/blog.service.js"></script>
+	<script src="app-services/event.service.js"></script>
 	<script src="app-services/chat.service.js"></script>
 	<script src="app-services/privatechat.service.js"></script>
 	<script src="app-services/friend.service.js"></script>
@@ -87,6 +89,7 @@
     <script src="login/login.controller.js"></script>
     <script src="register/register.controller.js"></script>
     <script src="job/job.controller.js"></script>
+    <script src="event/event.controller.js"></script>
     <script src="blog/blog.controller.js"></script>
     <script src="chat/chat.controller.js"></script>
     <script src="privatechat/privatechat.controller.js"></script>

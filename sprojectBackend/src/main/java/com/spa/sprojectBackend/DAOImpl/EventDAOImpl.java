@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.spa.sprojectBackend.DAO.EventDAO;
 import com.spa.sprojectBackend.model.Event;
+import com.spa.sprojectBackend.model.JoinEvent;
 import com.spa.sprojectBackend.model.User;
 
 @Repository("eventDAO")
@@ -23,10 +24,11 @@ public class EventDAOImpl implements EventDAO{
 
 	public void addEvent(Event event) {
 		Session session=sessionFactory.getCurrentSession();
-		User u=event.getCreatedBy();
-		List<User> ulist=event.getJoinedBy();
-		ulist.add(u);
-		event.setJoinedBy(ulist);
+		
+		JoinEvent je= new JoinEvent();
+		je.setEvent(event);
+		je.setJoinedBy(event.getCreatedBy());
+		session.saveOrUpdate(je);
 		
 		session.saveOrUpdate(event);
 		
@@ -51,9 +53,9 @@ public class EventDAOImpl implements EventDAO{
 		return listEvent;
 	}
 
-	public List<Event> getListofEventsJoined(long userId) {
+	public List<JoinEvent> getListofEventsJoined(long userId) {
 		Session session=sessionFactory.getCurrentSession();
-		List<Event> listjoinedEvent=session.createQuery("from Event where joinedBy="+userId).getResultList();
+		List<JoinEvent> listjoinedEvent=session.createQuery("from JoinEvent where joinedBy="+userId).getResultList();
 		return listjoinedEvent;
 	}
 
@@ -64,13 +66,11 @@ public class EventDAOImpl implements EventDAO{
 		User u=(User)session.createQuery("from User where userId="+UserId).getSingleResult();
 		
 		Event event=(Event)session.createQuery("from Event where eventId="+eventId).getSingleResult();
+		JoinEvent je= new JoinEvent();
+		je.setEvent(event);
+		je.setJoinedBy(u);
 		
-		List<User> ulist=event.getJoinedBy();
-		
-		ulist.add(u);
-		event.setJoinedBy(ulist);
-		
-		session.saveOrUpdate(event);
+		session.saveOrUpdate(je);
 	}
 
 

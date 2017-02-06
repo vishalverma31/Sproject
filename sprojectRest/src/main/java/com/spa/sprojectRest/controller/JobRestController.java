@@ -1,5 +1,6 @@
 package com.spa.sprojectRest.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -56,7 +57,8 @@ public class JobRestController {
 	    
 		@PostMapping(value = "/job/")
 	    public ResponseEntity<Void> createJob(@RequestBody Job job) {
-	         	        	  
+	         job.setDateTime(new Date());
+	         job.setStatus("open");
 	        jobDAO.addJob(job);
 	         
 	        return new ResponseEntity<Void>(HttpStatus.CREATED);

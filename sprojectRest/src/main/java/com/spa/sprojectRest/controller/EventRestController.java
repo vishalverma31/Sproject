@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.spa.sprojectBackend.DAO.EventDAO;
 import com.spa.sprojectBackend.model.Event;
+import com.spa.sprojectBackend.model.JoinEvent;
 
 @RestController
 public class EventRestController {
@@ -49,16 +50,16 @@ public class EventRestController {
 	//-------------------Retrieve All Events--------------------------------------------------------
     
 	@GetMapping(value="/event/joined")
-    public ResponseEntity<List<Event>> listJoinedEvents(HttpSession session) {
+    public ResponseEntity<List<JoinEvent>> listJoinedEvents(HttpSession session) {
 		long loggedInUserId=(Long)session.getAttribute("loggedInUserId");
 		
-		List<Event> events=eventDAO.getListofEventsJoined(loggedInUserId);
+		List<JoinEvent> events=eventDAO.getListofEventsJoined(loggedInUserId);
 		
         if(events.isEmpty()){
-            return new ResponseEntity<List<Event>>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<List<JoinEvent>>(HttpStatus.NO_CONTENT);
              //You may decide to return HttpStatus.NOT_FOUND
         }
-        return new ResponseEntity<List<Event>>(events, HttpStatus.OK);
+        return new ResponseEntity<List<JoinEvent>>(events, HttpStatus.OK);
     }
 
 	//-------------------Retrieve Single Event--------------------------------------------------------

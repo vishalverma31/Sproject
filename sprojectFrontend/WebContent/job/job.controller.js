@@ -53,7 +53,8 @@
  	    	    	       .then(
  	    	    	                      function(d){
 											  alert("You successfully posted the Job")
-											  },
+											  getAllJobs();
+ 	    	    	                      },
  	    	    	                      function(errResponse){
  	    	    	                          console.error('JobCtrl: Error while posting the Job.');
  	    	    	                      });
@@ -86,13 +87,14 @@
          
          function submitJob() {
  	    	   console.log('JobCtrl: Saving New Job', vm.job); 
+ 	    	   vm.job.description=document.getElementById("description").value;
  	    	   postAJob(vm.job);
 
- 	    	vm.reset();
+ 	    	vm.resetJob();
  	    	}
          
          function resetJob(){
- 	    	      vm.user={};
+ 	    	      vm.job={};
  	    	      $scope.myJobForm.$setPristine();
             }
 

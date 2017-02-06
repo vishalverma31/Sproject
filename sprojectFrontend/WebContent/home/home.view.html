@@ -4,10 +4,13 @@
 <ul>
     <li ng-repeat="user in vm.allUsers">
        {{user.userId}} {{user.username}} ({{user.firstName}} {{user.lastName}})
-        - <a ng-click="vm.deleteUser(user.userId)">Delete</a>
+        - <a ng-show="vm.user.role=='admin'" ng-click="vm.deleteUser(user.userId)">Delete</a>
     </li>
 </ul>
 <p>&nbsp;</p>
-<p><a href="#!/createblog" class="btn btn-primary">Create Blog</a></p>
-<p><a href="#!/listnewblogs" ng-show="vm.user.role=='admin'" class="btn btn-primary">List of New Blogs</a></p>
+<p><a href="#!/createblog" class="btn btn-primary">Create Blog</a>
+   <a href="#!/postjob" ng-show="vm.user.role=='admin'" class="btn btn-primary">Post A Job</a>
+   <a href="#!/postevent" ng-show="vm.user.role=='admin'" class="btn btn-primary">Post An Event</a></p>
+<p><a href="#!/listnewblogs" ng-show="vm.user.role=='admin'" class="btn btn-primary">List of New Blogs</a>
+   <a href="#!/usermgnt" ng-show="vm.user.role=='admin'" class="btn btn-primary">User Management</a></p>
 <p><a href="#" ng-click="vm.logout()" class="btn btn-primary">Logout</a></p>

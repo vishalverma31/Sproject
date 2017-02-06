@@ -16,7 +16,8 @@
         service.Create = Create;
         service.Update = Update;
         service.Delete = Delete;
-        service.logout=logout;
+        service.logout = logout;
+        service.makeAdmin = makeAdmin;
 
         return service;
 
@@ -81,6 +82,14 @@
         	.then(
         			null,
         			handleError('UserService: Error while Logging Out')
+        		 );
+        }
+        
+        function makeAdmin(id){
+        	return $http.put(BASE_URL+'/user/makeAdmin/'+id)
+        	.then(
+        			handleSuccess,
+        			handleError('UserService: Error while Making User, Admin')
         		 );
         }
 

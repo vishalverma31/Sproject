@@ -3,6 +3,7 @@ package com.spa.sprojectBackend.DAO;
 import java.util.List;
 
 import com.spa.sprojectBackend.model.Event;
+import com.spa.sprojectBackend.model.JoinEvent;
 
 public interface EventDAO {
 	
@@ -11,6 +12,6 @@ public interface EventDAO {
 	public Event getEvent(long eventId);
 	public void joinEvent(long UserId,long eventId);
 	public List<Event> getListOfEvents();
-	public List<Event> getListofEventsJoined(long userId);
+	public List<JoinEvent> getListofEventsJoined(long userId);
 
 }

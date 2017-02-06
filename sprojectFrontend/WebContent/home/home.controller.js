@@ -11,8 +11,10 @@
 
         vm.user = null;
         vm.allUsers = [];
+        
         vm.deleteUser = deleteUser;
         vm.logout=logout;
+        vm.makeAdmin=makeAdmin;
         
         initController();
 
@@ -38,6 +40,13 @@
         function deleteUser(id) {
             UserService.Delete(id)
             .then(function () {
+                loadAllUsers();
+            });
+        }
+        
+        function makeAdmin(id){
+        	UserService.makeAdmin(id)
+        	.then(function () {
                 loadAllUsers();
             });
         }

@@ -14,6 +14,12 @@ console.log('inside app.js')
                 templateUrl: 'home/home.view.html',
                 controllerAs: 'vm'
             })
+            
+            .when('/usermgnt', {
+                controller: 'HomeController',
+                templateUrl: 'home/usermanagement.view.html',
+                controllerAs: 'vm'
+            })
 
             .when('/login', {
                 controller: 'LoginController',
@@ -46,6 +52,28 @@ console.log('inside app.js')
             .when('/viewblog', {
                 controller: 'BlogController',
                 templateUrl: 'blog/showblog.view.html',
+                controllerAs: 'vm'
+            })
+            
+            //EVENT MODULE
+            .when('/postevent', {
+                controller: 'EventController',
+                templateUrl: 'event/postevent.view.html',
+                controllerAs: 'vm'
+            })
+            .when('/listevents', {
+                controller: 'EventController',
+                templateUrl: 'event/listevents.view.html',
+                controllerAs: 'vm'
+            })
+            .when('/joinedevents', {
+                controller: 'EventController',
+                templateUrl: 'event/joinedevents.view.html',
+                controllerAs: 'vm'
+            })
+            .when('/viewevent', {
+                controller: 'EventController',
+                templateUrl: 'event/viewevent.view.html',
                 controllerAs: 'vm'
             })
             
@@ -108,9 +136,9 @@ console.log('inside app.js')
 
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
             // redirect to login page if not logged in and trying to access a restricted page
-            var restrictedPage = $.inArray($location.path(), ['/login', '/register','/listblog','/viewblog','/searchjob','/jobdetails']) === -1;
+            var restrictedPage = $.inArray($location.path(), ['/login', '/register','/listblog','/viewblog','/searchjob','/jobdetails','/listevents','/joinedevents','/viewevent']) === -1;
             console.log('Restricted Page:'+restrictedPage);
-            var adminPage = $.inArray($location.path(), ['/postjob','/listnewblogs']) === 0;
+            var adminPage = $.inArray($location.path(), ['/postjob','/listnewblogs','/usermgnt','/postevent']) === 0;
             console.log('Restricted Page:'+restrictedPage);
             
             var loggedIn = $rootScope.currentUser.username;
