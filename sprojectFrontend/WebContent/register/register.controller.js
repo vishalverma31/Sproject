@@ -23,9 +23,9 @@
                     else {
                         FlashService.Error(response.message);
                         vm.dataLoading = false;
-                    }
-                  }
-               );
+                    	}
+                  	}
+                );
         }
     }
 

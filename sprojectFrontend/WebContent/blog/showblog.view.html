@@ -1,12 +1,11 @@
-<div class="container">
-<div class="form-group">
-    <label>{{selectedBlog.blogTitle}}</label> 
-	<br>
-	Written by: <label>{{selectedBlog.user.username}}</label>
-	on <label>{{selectedBlog.dateTime  | date:'MMM d, y hh:mm a'}}</label>
-	<br>
-	<br>
-    <label>{{selectedBlog.blogContent}}</label>
+<div class="col-sm-9">
+      <hr>
+      <h2>{{selectedBlog.blogTitle}}</h2>
+      <h5><span class="glyphicon glyphicon-time"></span> Post by {{selectedBlog.user.username}}, {{selectedBlog.dateTime  | date:'MMM d, y hh:mm a'}}</h5>
+      <h5><span class="label label-danger">Blog</span></h5><br>
+      <p>{{selectedBlog.blogContent}}</p>
+      <br><br>
+	  <hr>
 </div>
   
   <h2>Comments:</h2>

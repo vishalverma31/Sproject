@@ -7,6 +7,9 @@
     
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.2/sockjs.min.js" type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js" type="text/javascript"></script>
+    
   <script src="https://use.fontawesome.com/034feea29c.js"></script>
   
   <link rel="stylesheet" type="text/css" href="resources/styles.css">
@@ -28,6 +31,12 @@
         <li><a href="#!/listblog">List of Blogs</a></li>
       </ul>
     </li>
+    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i>&nbsp; Bulletins <span class="caret"> </span></a>
+      <ul class="dropdown-menu">
+        <li><a href="#!/listevents">List of Events</a></li>
+        <li><a href="#!/joinedevents">List of Joined Events</a></li>
+      </ul>
+    </li>
 	<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-briefcase fa-fw" aria-hidden="true"></i>&nbsp; Jobs <span class="caret"> </span></a>
       <ul class="dropdown-menu">
         <li><a href="#!/postjob">Post a Job</a></li>
@@ -44,9 +53,9 @@
 	<li><a href="#!/chat_forum"><i class="fa fa-comments fa-fw" aria-hidden="true"></i>&nbsp; Chat Forum</a></li>      
   </ul>
   <ul class="nav navbar-nav navbar-right">
-      <li><a href="#!/login" ng-show="currentUser==''"><span class="glyphicon glyphicon-user"></span> Login</a></li>
-      <li><a href="#!/register" ng-show="currentUser==''"><span class="glyphicon glyphicon-log-in"></span> Sign Up </a></li>
-	  <li><a href="#" ng-show="currentUser!=''" ng-click="vm.logout()"><i class="fa fa-sign-out fa-fw" aria-hidden="true"></i>&nbsp; Logout</a></li>  
+      <li><a href="#!/login" ng-hide="vm.user.role=='admin' || vm.user.role=='user'"><span class="glyphicon glyphicon-user"></span> Login</a></li>
+      <li><a href="#!/register" ng-hide="vm.user.role=='admin' || vm.user.role=='user'"><span class="glyphicon glyphicon-log-in"></span> Sign Up </a></li>
+	  <li><a href="#" ng-hide="vm.user.role!='admin' || vm.user.role!='user'" ng-click="vm.logout()"><i class="fa fa-sign-out fa-fw" aria-hidden="true"></i>&nbsp; Logout</a></li>  
   </ul>
 </div>
 </nav>

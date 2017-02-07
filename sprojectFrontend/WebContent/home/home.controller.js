@@ -5,8 +5,8 @@
         .module('app')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['UserService', '$rootScope','$location','AuthenticationService'];
-    function HomeController(UserService, $rootScope,$location,AuthenticationService) {
+    HomeController.$inject = ['UserService','FlashService', '$rootScope','$location','AuthenticationService'];
+    function HomeController(UserService,FlashService, $rootScope,$location,AuthenticationService) {
         var vm = this;
 
         vm.user = null;
@@ -15,6 +15,7 @@
         vm.deleteUser = deleteUser;
         vm.logout=logout;
         vm.makeAdmin=makeAdmin;
+        vm.Update=Update;
         
         initController();
 
@@ -51,10 +52,28 @@
             });
         }
         
+        function Update(user) {
+            vm.dataLoading = true;
+            
+            UserService.Update(user)
+                .then(function (response) {
+                    if (response.success) {
+                        FlashService.Success('Update Successful', true);
+                        $location.path('/');
+                      } 
+                    else {
+                        FlashService.Error(response.message);
+                        vm.dataLoading = false;
+                    	}
+                  	}
+                );
+        }
+        
         function logout() {
         	UserService.logout()
         	.then( function () {
         		AuthenticationService.ClearCredentials();
+        		vm.user = null;
         		$location.path("/login");
         		}, function(errResponse){
 					console.error('=>HomeCtrl: Error while Logging Out')

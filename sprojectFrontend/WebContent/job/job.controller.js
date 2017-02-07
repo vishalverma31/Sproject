@@ -51,13 +51,11 @@
          function postAJob(job){
  	    	JobService.postAJob(job)
  	    	    	       .then(
- 	    	    	                      function(d){
-											  alert("You successfully posted the Job")
-											  getAllJobs();
- 	    	    	                      },
- 	    	    	                      function(errResponse){
- 	    	    	                          console.error('JobCtrl: Error while posting the Job.');
- 	    	    	                      });
+ 	    	    	                vm.getAllJobs,
+ 	    	    	                function(errResponse){
+ 	    	    	                      console.error('JobCtrl: Error while posting the Job.');
+ 	    	    	                }
+ 	    	    	            );
             }
          
          function applyForJob(jobId){

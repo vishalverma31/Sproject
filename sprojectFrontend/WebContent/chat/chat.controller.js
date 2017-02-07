@@ -11,8 +11,9 @@ angular
 			$scope.message="";
 			};
 			
-			ChatService.receive().then(null,null,function(message) {
+			ChatService.receive()
+			  .then(null,null,function(message) {
 			    console.log("ChatCtrl: receive")
 				$scope.messages.push(message);
-			});
+			    });
 });
