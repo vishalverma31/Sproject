@@ -1,4 +1,21 @@
 <div class="col-md-6 col-md-offset-3">
+	<div class="row">
+	
+	<div class="panel panel-primary  col-sm-6">
+        <div class="panel-heading">Profile Picture</div>
+        <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
+        <div class="panel-footer">
+        <h1>Change your Picture</h1>
+		<form action="http://localhost:9080/sprojectRest/rest/file/upload" method="post" enctype="multipart/form-data">
+		<p>
+		  Select a file: <input type="file" name="file" size="45" />
+		</p>
+		<input type="submit" value="Upload it"/>
+		</form>
+        </div>
+    </div>
+	
+	<div class="col-sm-6">
     <h2>Update your Profile:</h2>
     <form name="form" ng-submit="vm.Update(vm.user)" role="form">
         <div class="form-group" ng-class="{ 'has-error': form.firstName.$dirty && form.firstName.$error.required }">
@@ -27,5 +44,8 @@
             <a href="#!/" class="btn btn-link">Go back to home</a>
         </div>
     </form>
+    </div>
+    
+  </div>
 </div>
 
