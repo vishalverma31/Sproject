@@ -7,7 +7,7 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
 		
-		return new Class[]{WebConfig.class,WebSocketConfig.class};
+		return new Class[]{WebConfig.class,WebSocketConfig.class,ImageUploadApp.class};
 	}
 
 	@Override
@@ -19,7 +19,7 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 	@Override
 	protected String[] getServletMappings() {
 		
-		return new String[]{"/"};
+		return new String[]{"/","/rest/*"};
 	}
 
 }
