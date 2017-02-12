@@ -1,17 +1,19 @@
-<div class="col-sm-9">
-      <hr>
+<div class="container">
+	<div>
       <h2>{{selectedBlog.blogTitle}}</h2>
       <h5><span class="glyphicon glyphicon-time"></span> Post by {{selectedBlog.user.username}}, {{selectedBlog.dateTime  | date:'MMM d, y hh:mm a'}}</h5>
       <h5><span class="label label-danger">Blog</span></h5><br>
+      <hr>
       <p>{{selectedBlog.blogContent}}</p>
       <br><br>
 	  <hr>
-</div>
+	</div>
   
   <h2>Comments:</h2>
-  <div ng-repeat="blogComment in vm.allBlogComments" ng-init="vm.fetchAllBlogComments(selectedBlog.blogId)">
-     <p>{{blogComment.blogComment}} - Written By: {{blog.user.username}}</p>
-  </div>
+	  <div ng-repeat="blogComment in vm.allBlogComments" ng-init="vm.fetchAllBlogComments(selectedBlog.blogId)">
+        <p>{{blogComment.blogComment}} - Written By: {{blog.user.username}}</p>
+	  </div>
+	  
   <form ng-submit="vm.commentSubmit(selectedBlog)" name="myCommentForm" id="myCommentForm">
     <div class="form-group">
       <label for="comment">Comment:</label>

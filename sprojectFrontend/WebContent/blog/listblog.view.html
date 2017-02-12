@@ -1,6 +1,16 @@
-<div class="container">
+<div class="container" id="divBlogContent">
 Welcome To Blogs
 <div ng-repeat="blog in vm.allBlogs">
-    <a href="#" ng-click="vm.getBlog(blog.blogId)"> Title: {{blog.blogTitle}} - Written By: {{blog.user.username}}</a>
+  <div class="card">
+    <div class="container">
+      <h3><b>{{blog.blogTitle}}</b></h3>
+      <h5>By: {{blog.user.username}}</h5>
+	  <h6><span class="glyphicon glyphicon-time"></span>{{blog.dateTime  | date:'MMM d, y hh:mm a'}}</h6>
+    </div>
+    <div class="container">
+      <p>{{blog.blogContent}}</p>
+      <p><button class="btn btn-default" ng-click="vm.getBlog(blog.blogId)"><b>READ MORE »</b></button></p>        
+    </div>
+  </div>
 </div>
 </div>

@@ -52,7 +52,7 @@
     </li>
 	<li><a href="#!/chat_forum"><i class="fa fa-comments fa-fw" aria-hidden="true"></i>&nbsp; Chat Forum</a></li>      
   </ul>
-  <ul class="nav navbar-nav navbar-right">
+  <ul class="nav navbar-nav navbar-right" ng-init="vm.login()">
       <li><a href="#!/login" ng-hide="vm.user.role=='admin' || vm.user.role=='user'"><span class="glyphicon glyphicon-user"></span> Login</a></li>
       <li><a href="#!/register" ng-hide="vm.user.role=='admin' || vm.user.role=='user'"><span class="glyphicon glyphicon-log-in"></span> Sign Up </a></li>
 	  <li><a href="#" ng-hide="vm.user.role!='admin' || vm.user.role!='user'" ng-click="vm.logout()"><i class="fa fa-sign-out fa-fw" aria-hidden="true"></i>&nbsp; Logout</a></li>  
@@ -61,7 +61,7 @@
 </nav>
 	
 	
-    <div class="jumbotron">
+    <div class="jumbotron" style="background:transparent !important">
         <div class="container">
             <div class="col-sm-8 col-sm-offset-2">
                 <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
