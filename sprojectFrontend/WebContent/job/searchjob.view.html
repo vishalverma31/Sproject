@@ -1,20 +1,16 @@
-<div class="container">
-    
-	Search for job
-	
+<div class="container" id="divBlogContent">
+<br>
+<h2><b>Search Job:</b></h2>
+
 	<p><input type="text" ng-model="search"></p>
-	
+<hr />	
 	<div ng-repeat="job in vm.jobs | filter: search">
 	     <fielset>
 		     <p>ID: {{job.jobId}} 
 			     &nbsp; &nbsp; &nbsp;
                  <a href="#" ng-click="vm.getJobDetails(job.jobId)"> Get Job Details</a>
-				 &nbsp; &nbsp; &nbsp;
-				 <button type="button" ng-click="vm.applyForJob(job.jobId)"
-				   class="btn btn-warning btn-sm">Apply for job</button>
 		     </p>
 			 <p>Title:{{job.jobTitle}}</p>
 			 <p>Qualification:{{job.qualification}}</p>
-			 <p>Description:{{job.description}}</p>
          </fielset>	
 </div>	

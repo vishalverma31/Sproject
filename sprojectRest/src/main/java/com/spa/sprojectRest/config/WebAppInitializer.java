@@ -20,10 +20,6 @@ public class WebAppInitializer implements WebApplicationInitializer {
 		
 		servlet.addMapping("/");
 		servlet.addMapping("/rest/*");
-		
-		
-		
-		
 	}
 
 }

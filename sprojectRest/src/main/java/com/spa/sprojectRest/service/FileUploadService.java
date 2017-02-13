@@ -9,6 +9,7 @@ import java.io.InputStream;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -19,12 +20,15 @@ import com.sun.jersey.multipart.FormDataParam;
 public class FileUploadService {
 	
 	
+	
 	@POST
-	@Path("/upload")
+	@Path("/upload/")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	public Response uploadFile(@FormDataParam("file") InputStream uploadedInputStream,@FormDataParam("file") FormDataContentDisposition fileDetails)
+	@Produces("image/jpeg")
+	public Response uploadFile(@FormDataParam("file") InputStream uploadedInputStream,@FormDataParam("file") FormDataContentDisposition fileDetails,@FormDataParam("userId") long id)
 	{
-		String uploadLocation="E://Projects//uploadedFiles/"+fileDetails.getFileName();
+		
+		String uploadLocation="E://DT_project//sprojectFrontend//WebContent//resources/dp"+id;
 		
 		try
 		{

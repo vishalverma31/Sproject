@@ -1,6 +1,6 @@
 <div>
       <div ng-show="currentUser==''">
-           <div class="alert alert-danger fade in">
+           <div class="alert alert-danger fade in" id="divGrey">
 		        <div>
 				    You are not logged in.. Please Login <a href="#/login"> here </a>
 				</div>
@@ -13,7 +13,7 @@
 	  </div>
 	  
 	  <div ng-hide="currentUser==''">
-	       <div class="generic-container">
+	       <div class="generic-container" id="divGrey">
 		        <form ng-submit="vm.eventSubmit()" name="myEventForm" id="myEventForm" class="form-horizontal" role="form">
 				      <label>Please fill the Event details..</label>
 					  

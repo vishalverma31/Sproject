@@ -153,8 +153,11 @@
         	
            	    	   console.log('BCtrl: Saving New Blog', vm.blog); 
            	    	   console.log($rootScope.currentUser);
+           	    	   
            	    	   vm.blog.user=$rootScope.currentUser;
+           	    	   vm.blog.blogTitle=document.getElementById("blogTitle").value;
            	    	   vm.blog.blogContent=document.getElementById("blogContent").value;
+           	    	   
            	    	   createBlog(vm.blog);
 
            	    	vm.blogReset();

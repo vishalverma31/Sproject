@@ -23,6 +23,7 @@
             loadCurrentUser();
             loadAllUsers();
         }
+        
 
         function loadCurrentUser() {
             UserService.GetByUsername($rootScope.currentUser.username)
@@ -73,7 +74,7 @@
         	UserService.logout()
         	.then( function () {
         		AuthenticationService.ClearCredentials();
-        		vm.user = null;
+        		$rootScope.currentUser='';
         		$location.path("/login");
         		}, function(errResponse){
 					console.error('=>HomeCtrl: Error while Logging Out')

@@ -9,6 +9,26 @@
         background-size: cover;
   }
   
+  p.showLess {
+    white-space: nowrap; 
+    width: 300px; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  p.scrollabletextbox {
+    height:350px;
+    overflow:scroll;
+  }
+  
+  #divGrey { 
+  	padding: 25px;
+    background-color:#fafaf2;
+    border: 2px solid black;
+  	border-style: outset;
+	border-radius: 5px;
+  }
+  
   #div1{
   	margin: 30px;
   	background-color: f7f8f9;
@@ -47,6 +67,15 @@
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   }
   
+  #rfooter {
+  position: relative;
+  left:0;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 45px;
+  background-color:black;
+  }
   
   #footer {
   position: absolute;

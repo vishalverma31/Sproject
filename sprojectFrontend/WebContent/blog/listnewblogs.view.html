@@ -1,10 +1,21 @@
-<div class="container">
-Welcome To Blogs
+<div class="container"  id="divBlogContent">
+<br>
+<h2><b>Approve new Blog Posts:</b></h2>
+<hr />
 <div ng-repeat="blog in vm.allNewBlogs">
-    <a href="#" ng-click="vm.getBlog(blog.blogId)"> Title: {{blog.blogTitle}} - Written By: {{blog.user.username}}</a>
-	<button type="button" ng-click="vm.approveBlog(blog.blogId)"
+    <div class="card">
+     <div class="container">
+      <h3><b>{{blog.blogTitle}}</b></h3>
+      <h5>By: {{blog.user.username}}</h5>
+	  <h6><span class="glyphicon glyphicon-time"></span>{{blog.dateTime  | date:'MMM d, y hh:mm a'}}</h6>
+      <p>
+      <button type="button" ng-click="vm.approveBlog(blog.blogId)"
 				   class="btn btn-success btn-sm">Approve</button>
-	<button type="button" ng-click="vm.rejectBlog(blog.blogId)"
-				   class="btn btn-success btn-sm">Reject</button>    
+	  <button type="button" ng-click="vm.rejectBlog(blog.blogId)"
+				   class="btn btn-success btn-sm">Reject</button>
+      </p>
+     </div>
+	</div>    
 </div>
 </div>
+

@@ -1,5 +1,7 @@
 <div class="container" id="divBlogContent">
-Welcome To Blogs
+<br>
+<h2><b>Recent Posts:</b></h2>
+<hr />
 <div ng-repeat="blog in vm.allBlogs">
   <div class="card">
     <div class="container">
@@ -8,7 +10,7 @@ Welcome To Blogs
 	  <h6><span class="glyphicon glyphicon-time"></span>{{blog.dateTime  | date:'MMM d, y hh:mm a'}}</h6>
     </div>
     <div class="container">
-      <p>{{blog.blogContent}}</p>
+      <p class="showLess">{{blog.blogContent}}</p>
       <p><button class="btn btn-default" ng-click="vm.getBlog(blog.blogId)"><b>READ MORE »</b></button></p>        
     </div>
   </div>

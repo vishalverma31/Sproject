@@ -1,12 +1,12 @@
-<div class="container">
+<div class="container" id="divBlogContent">
 <div class="form-group">
     Job ID :<label>{{selectedJob.jobID}}</label><br> 
-	Job Title :<label>{{selectedJob.title}}</label><br>
-	Posted Date :<label>{{selectedJob.dateTime}}</label><br>
+	Job Title :<label>{{selectedJob.jobTitle}}</label><br>
+	<span class="glyphicon glyphicon-time"></span>Posted Date :<label>{{selectedJob.dateTime | date:'MMM d, y hh:mm a'}}</label><br>
 	Job Description :<label>{{selectedJob.description}}</label><br>
 	Qualification :<label>{{selectedJob.qualification}}</label><br>
 	
-	<button type="button" ng-click="vm.applyForJob(selectedJob.jobId}})"
+	<button type="button" ng-click="vm.applyForJob(selectedJob.jobId)"
 	  class="btn btn-warning btn-sm">Apply for Job</button>
 	
 </div>
