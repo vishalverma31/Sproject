@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spa.sprojectBackend.DAO.EventDAO;
+import com.spa.sprojectBackend.DAO.UserDAO;
 import com.spa.sprojectBackend.model.Event;
 import com.spa.sprojectBackend.model.JoinEvent;
+import com.spa.sprojectBackend.model.User;
 
 @RestController
 public class EventRestController {
@@ -25,11 +27,19 @@ public class EventRestController {
 	@Autowired
 	EventDAO eventDAO;
 	
+	@Autowired
+	UserDAO userDAO;
+	
 	//-------------------Create a Event--------------------------------------------------------
     
 	@PostMapping(value = "/event/")
     public ResponseEntity<Void> createBlog(@RequestBody Event event) {
-        event.setEventCreatedOn(new Date());
+        Date dateT=new Date();
+        int d=dateT.getDate();
+        d=d+7;
+        dateT.setDate(d);
+        event.setEventDateTime(dateT);
+		event.setEventCreatedOn(new Date());
 		eventDAO.addEvent(event);
         
         return new ResponseEntity<Void>(HttpStatus.CREATED);
@@ -76,12 +86,18 @@ public class EventRestController {
 	    }
 	
 	//---------------------------Join the Event-------------------------------------
-	@GetMapping(value = "/joinEvent/{eventId}")
+	@PostMapping(value = "/joinEvent/{eventId}")
 	public ResponseEntity<Event> joinEvent(@PathVariable("eventId") long eventId,HttpSession session) 
 	{
 	  long loggedInUserId=(Long)session.getAttribute("loggedInUserId");
+	  System.out.println("JoinEvent Current UserID:"+loggedInUserId);
+	  User u=userDAO.getUserByUserId(loggedInUserId);
 	  
-	  eventDAO.joinEvent(loggedInUserId, eventId);
+	  JoinEvent je=new JoinEvent();
+	  je.setEvent(eventDAO.getEvent(eventId));
+	  je.setUser(u);
+	  
+	  eventDAO.joinEvent(je);
 	  
 	  return new ResponseEntity<Event>(HttpStatus.CREATED);
 	}

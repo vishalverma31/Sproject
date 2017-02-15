@@ -1,3 +1,4 @@
+<div id="divGrey">
 <h1>Hi {{vm.user.firstName}}!</h1>
 <p>You're logged in!!</p>
 <h3>All registered users:</h3>
@@ -15,4 +16,4 @@
 <p><a href="#!/listnewblogs" ng-show="vm.user.role=='admin'" class="btn btn-primary">List of New Blogs</a>
    <a href="#!/usermgnt" ng-show="vm.user.role=='admin'" class="btn btn-primary">User Management</a></p>
 <p><a href="#" ng-click="vm.logout()" class="btn btn-primary">Logout</a></p>
-
+</div>

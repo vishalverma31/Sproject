@@ -7,7 +7,7 @@
 
     EventService.$inject = ['$http','$q','$rootScope'];
     function EventService($http,$q,$rootScope) {
-        var BASE_URL='http://localhost:9080/sprojectRest';
+        var BASE_URL='http://localhost:9086/sprojectRest';
         var service = {};
 
         service.fetchAllEvents = fetchAllEvents;			//Done
@@ -79,13 +79,13 @@
            
            function joinEvent(id) {
         	   console.log("EService: joinEvent")
-               return $http.get(BASE_URL+'/joinEvent/'+id)
+               return $http.post(BASE_URL+'/joinEvent/'+id)
                  .then(
                          function(response){
                        	   return response.data;
                            },
                          function(errResponse){
-                              console.error('BService: Error while getting the Blog');
+                              console.error('EService: Error while getting the Blog');
                               return $q.reject(errResponse);
                           }
                       );

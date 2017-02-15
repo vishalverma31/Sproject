@@ -52,11 +52,11 @@
     </li>
 	<li><a href="#!/chat_forum"><i class="fa fa-comments fa-fw" aria-hidden="true"></i>&nbsp; Chat Forum</a></li>      
   </ul>
-  <ul class="nav navbar-nav navbar-right" ng-init="initController()">
+  <!-- <ul class="nav navbar-nav navbar-right" ng-controller="HomeController" ng-init="vm.loadCurrentUser()">
       <li><a href="#!/login" ng-hide="vm.user.role=='admin' || vm.user.role=='user'"><span class="glyphicon glyphicon-user"></span> Login</a></li>
       <li><a href="#!/register" ng-hide="vm.user.role=='admin' || vm.user.role=='user'"><span class="glyphicon glyphicon-log-in"></span> Sign Up </a></li>
-	  <li><a href="#" ng-hide="vm.user.role!='admin' || vm.user.role!='user'" ng-click="vm.logout()"><i class="fa fa-sign-out fa-fw" aria-hidden="true"></i>&nbsp; Logout</a></li>  
-  </ul>
+	  <li><a href="#" ng-show="vm.user.role=='admin' || vm.user.role=='user'" ng-click="vm.logout()"><i class="fa fa-sign-out fa-fw" aria-hidden="true"></i>&nbsp; Logout</a></li>  
+  </ul> -->
 </div>
 </nav>
 	

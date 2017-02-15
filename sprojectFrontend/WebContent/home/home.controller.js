@@ -5,17 +5,18 @@
         .module('app')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['UserService','FlashService', '$rootScope','$location','AuthenticationService'];
-    function HomeController(UserService,FlashService, $rootScope,$location,AuthenticationService) {
+    HomeController.$inject = ['UserService','FlashService', '$rootScope','$location','AuthenticationService','$scope'];
+    function HomeController(UserService,FlashService, $rootScope,$location,AuthenticationService,$scope) {
         var vm = this;
 
         vm.user = null;
         vm.allUsers = [];
-        
+        vm.currentUserId=$rootScope.currentUser.userId;
         vm.deleteUser = deleteUser;
         vm.logout=logout;
         vm.makeAdmin=makeAdmin;
         vm.Update=Update;
+        vm.loadCurrentUser=loadCurrentUser;
         
         initController();
 
@@ -29,6 +30,7 @@
             UserService.GetByUsername($rootScope.currentUser.username)
                 .then(function (user) {
                     vm.user = user;
+                    $scope.link = '/sprojectFrontend/resources/dp_'+vm.currentUserId+'.jpg';
                 });
         }
 

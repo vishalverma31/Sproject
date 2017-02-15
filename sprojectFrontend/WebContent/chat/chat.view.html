@@ -13,8 +13,8 @@
       <span class="close">&times;</span>
       <h2>Chat Box</h2>
     </div>
-    <div class="modal-body">
-      <p ng-repeat="message in messages | orderBy: time :true: reverse" class="message scrollabletextbox">
+    <div class="modal-body scrollabletextbox">
+      <p ng-repeat="message in messages | orderBy: sortTime :reverse" class="message">
 		 <span><b>{{message.username}}</b> </span>
 		 <br>
 		   <time>{{message.time | date:'HH:mm'}}</time>

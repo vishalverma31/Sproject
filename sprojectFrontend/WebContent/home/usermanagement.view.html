@@ -1,8 +1,11 @@
+<div class="container" id="divBlogContent">
 <h3>All registered users:</h3>
 <ul>
     <li ng-repeat="user in vm.allUsers">
        {{user.userId}} {{user.username}} ({{user.firstName}} {{user.lastName}})
-        - <a ng-hide="user.role=='admin'" ng-click="vm.makeAdmin(user.userId)">Make Admin</a>
+         <button class="btn btn-info" ng-hide="user.role=='admin'" ng-click="vm.makeAdmin(user.userId)">Make Admin</button>
+         <hr>
     </li>
 </ul>
 <p>&nbsp;</p>
+</div>

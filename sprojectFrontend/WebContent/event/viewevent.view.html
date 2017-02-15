@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" id="divBlogContent">
 <div class="form-group">
     <label>{{selectedEvent.eventTitle}}</label> 
 	<br>
@@ -6,6 +6,11 @@
 	on <label>{{selectedEvent.eventCreatedOn | date:'MMM d, y hh:mm a'}}</label>
 	<br>
 	Date And Time of Event:{{selectedEvent.eventDateTime | date:'MMM d, y hh:mm a'}}
+	<h5><span class="label label-danger">Event</span></h5><br>
 	<br>
     <label>{{selectedEvent.eventDescription}}</label>
+    <button type="button" ng-click="vm.joinEvent(selectedEvent.eventId)"
+	  class="btn btn-warning btn-sm">Join the event</button>
 </div>
+</div>
+ 

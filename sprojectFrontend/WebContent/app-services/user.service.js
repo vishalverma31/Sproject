@@ -8,7 +8,7 @@
     UserService.$inject = ['$http'];
     function UserService($http) {
         var service = {};
-        var BASE_URL='http://localhost:9080/sprojectRest';
+        var BASE_URL='http://localhost:9086/sprojectRest';
         service.GetAll = GetAll;
         service.GetAllExceptCurrent=GetAllExceptCurrent;
         service.GetById = GetById;
@@ -54,7 +54,7 @@
         }
 
         function Update(user) {
-            return $http.put(BASE_URL+'/user/' + user.id, user)
+            return $http.put(BASE_URL+'/user/', user)
             .then(
             		handleSuccess,
             		handleError('UserService: Error updating user')

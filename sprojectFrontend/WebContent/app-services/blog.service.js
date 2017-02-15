@@ -7,7 +7,7 @@
 
     BlogService.$inject = ['$http','$q','$rootScope'];
     function BlogService($http,$q,$rootScope) {
-        var BASE_URL='http://localhost:9080/sprojectRest';
+        var BASE_URL='http://localhost:9086/sprojectRest';
         var service = {};
 
         service.fetchAllBlogs = fetchAllBlogs;
@@ -24,15 +24,15 @@
 
         return service;
         
-        function createBlogComment(blogComment) {
+        function createBlogComment(blogComment,blogId) {
       	  console.log("BService: create BlogComment")
-          return $http.post(BASE_URL+'/addComment/', blogComment)
+          return $http.post(BASE_URL+'/addComment/'+blogId,blogComment)
             .then(
                     function(response){
                          return response.data;
                       },
                     function(errResponse){
-                         console.error('BService: Error creating the Blog');
+                         console.error('BService: Error creating the BlogComment');
                          return $q.reject(errResponse);
                      }
                );
@@ -113,8 +113,9 @@
             return $http.get(BASE_URL+'/blog/'+id)
               .then(
                       function(response){
-                    	   $rootScope.selectedBlog=response.data;
-                           return response.data;
+                    	   
+                    	  $rootScope.selectedBlog=response.data;
+                    	    return response.data;
                         },
                       function(errResponse){
                            console.error('BService: Error while getting the Blog');

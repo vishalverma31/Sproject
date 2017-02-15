@@ -5,6 +5,11 @@ angular
 		 $scope.message= "";
 		 $scope.max = 140;
 		 
+		 $scope.sortTime = function(message) {
+			    var date = new Date(message.time);
+			    return date;
+			};
+		 
 		 $scope.addMessage = function() {
 			console.log("ChatCtrl: addMessage")
 			ChatService.send($scope.message);

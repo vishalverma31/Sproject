@@ -1,11 +1,18 @@
-<div class="container">
-Welcome To Events
+<div class="container" id="divBlogContent">
+<br>
+<h2><b>List of Events:</b></h2>
+<hr />
+
 <div ng-repeat="event in vm.allEvents">
-    <a href="#" ng-click="vm.getEvent(event.eventId)"> Title: {{event.eventTitle}} - Created By: {{event.createdBy.username}}</a>
-	<p>Created on: {{event.eventCreatedOn | date:'MMM d, y hh:mm a'}}
-	 <br>
-	   Date of Event: {{event.eventDateTime | date:'MMM d, y hh:mm a'}}
-	</p>
+	<div class="card">
+    <div class="container">
+    <h3><b>Title: {{event.eventTitle}}</b></h3>
+    <h5>Created By: {{event.createdBy.username}}</h5>
+	<p> Date of Event: {{event.eventDateTime | date:'MMM d, y hh:mm a'}}</p>
+	<p><button class="btn btn-default" ng-click="vm.getEvent(event.eventId)"><b>Get Event Details</b></button></p>
+	</div>
+	</div>
 	<br>
 </div>
 </div>
+

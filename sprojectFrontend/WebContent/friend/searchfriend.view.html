@@ -1,14 +1,9 @@
-<div class="container">
-    <p>
-	<p>
-	<p>
-	<p>
-	<p>
-	
-	
-	Search	
+<div class="container" id="divBlogContent">
+<br>
+<h2><b>Search for User:</b></h2>
+
 	<p><input type="text" ng-model="search"></p>
-	
+<hr>	
 	<div ng-repeat="user in vm.usersExceptCurrent | filter: search">
 	     <fielset>
 		     <p>ID: {{user.userId}}
@@ -20,4 +15,6 @@
 		     </p>
 			 
          </fielset>	
+<hr>
 </div>	
+</div>

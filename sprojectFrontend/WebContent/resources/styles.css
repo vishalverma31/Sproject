@@ -16,7 +16,7 @@
     text-overflow: ellipsis;
   }
   
-  p.scrollabletextbox {
+  div.scrollabletextbox {
     height:350px;
     overflow:scroll;
   }

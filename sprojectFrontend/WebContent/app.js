@@ -142,7 +142,7 @@ console.log('inside app.js')
 
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
             // redirect to login page if not logged in and trying to access a restricted page
-            var restrictedPage = $.inArray($location.path(), ['/login', '/register','/listblog','/viewblog','/searchjob','/jobdetails','/listevents','/joinedevents','/viewevent','/updateProfile']) === -1;
+            var restrictedPage = $.inArray($location.path(), ['/login', '/register','/listblog','/viewblog','/searchjob','/jobdetails','/listevents','/joinedevents','/viewevent','/updateProfile','/chat_forum','/privatechat']) === -1;
             console.log('Restricted Page:'+restrictedPage);
             var adminPage = $.inArray($location.path(), ['/postjob','/listnewblogs','/usermgnt','/postevent']) === 0;
             console.log('Restricted Page:'+restrictedPage);

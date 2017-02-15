@@ -92,8 +92,9 @@ public class UserRestController {
 		
 		 //------------------- Update a User --------------------------------------------------------
 	    
-		@PutMapping(value = "/user/{id}")
-	    public ResponseEntity<User> updateUser(@PathVariable("id") long id, @RequestBody User user) {
+		@PutMapping(value = "/user/")
+	    public ResponseEntity<User> updateUser(@RequestBody User user,HttpSession session) {
+			long id=(Long)session.getAttribute("loggedInUserId");
 	        System.out.println("Updating User " + id);
 	          
 	        User currentUser = userDAO.getUserByUserId(id);

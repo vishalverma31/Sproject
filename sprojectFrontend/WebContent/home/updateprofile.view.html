@@ -1,13 +1,14 @@
-<div class="col-md-6 col-md-offset-3" id="divUP">
+<div class="container" id="divGrey">
 	<div class="row">
 	
 	<div class="panel panel-primary  col-sm-6">
+		<br>
         <div class="panel-heading">Profile Picture</div>
-        <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
+        <div class="panel-body"><img ng-src="{{link}}" class="img-responsive" style="width:150px; height:200px" alt="Image"></div>
         <div class="panel-footer">
         <h3>Change your Picture</h3>
-		<form action="http://localhost:9080/sprojectRest/rest/file/upload/" method="post" enctype="multipart/form-data">
-		<input name="userId" ng-model="vm.user.userId" readonly="true" size="8"  disabled="true" />
+		<form action="http://localhost:9086/sprojectRest/rest/file/upload/" method="post" enctype="multipart/form-data">
+		   <input type="number" readonly name="userID" id="userID" ng-model="vm.user.userId" />
 		<p>
 		  Select a file: <input type="file" name="file" />
 		</p>

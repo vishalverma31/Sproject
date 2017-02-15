@@ -10,7 +10,7 @@ public interface EventDAO {
 	public void addEvent(Event event);
 	public void deleteEvent(Event event);
 	public Event getEvent(long eventId);
-	public void joinEvent(long UserId,long eventId);
+	public void joinEvent(JoinEvent joinEvent);
 	public List<Event> getListOfEvents();
 	public List<JoinEvent> getListofEventsJoined(long userId);
 

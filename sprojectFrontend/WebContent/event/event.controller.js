@@ -10,6 +10,7 @@
     	 var vm = this;
 
          vm.event = null;
+         vm.joinevent=null;
 		 vm.allEvents=[];
 		 vm.allJoinedEvents=[];
 		 
@@ -90,8 +91,8 @@
            	    	   console.log($rootScope.currentUser);
            	    	   vm.event.createdBy=$rootScope.currentUser;
            	    	   vm.event.eventDescription=document.getElementById("eventDescription").value;
-					   vm.event.eventDateTime=document.getElementById("eventDateTime").value;
-           	    	   
+					   vm.event.eventTitle=document.getElementById("eventTitle").value;
+					   
 					   postEvent(vm.event);
 
            	    	vm.eventReset();
@@ -110,7 +111,7 @@
 		
 		function eventReset(){
     	   console.log(">>ECtrl: Reset Event Form")
-           	    	      vm.blog={};
+           	    	      vm.event={};
            	    	      $scope.myEventForm.$setPristine();
         }
 		 

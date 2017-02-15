@@ -46,6 +46,7 @@
         	       .then(
         	                      function(d) {
         	                          vm.blog=d;
+        	                          
         	                          $location.path('/viewblog');
         	                      },
         	                      function(errResponse){
@@ -190,21 +191,21 @@
            	    	      $scope.myBlogForm.$setPristine();
         }
        
-       function commentSubmit(selectedBlog) {
+       function commentSubmit(blogId) {
        	
 	    	   console.log('BCtrl: Saving New Blog Comment', vm.blogComment); 
 	    	   console.log($rootScope.currentUser);
 	    	   vm.blogComment.user=$rootScope.currentUser;
-	    	   vm.blogComment.blog=selectedBlog;
+	    	   //vm.blogComment.blog=selectedBlog;
 	    	   vm.blogComment.blogComment==document.getElementById("comment").value;
-	    	   createBlogComment(vm.blogComment);
+	    	   createBlogComment(vm.blogComment,blogId);
 
 	    	vm.commentReset();
        }
 
-       function createBlogComment(blogComment){
+       function createBlogComment(blogComment,blogId){
     	   console.log(">>BCtrl: create BlogComment")
-    	BlogService.createBlogComment(blogComment)
+    	BlogService.createBlogComment(blogComment,blogId)
     	    	       .then(
     	    	                      vm.fetchAllBlogComments,
     	    	                      function(errResponse){

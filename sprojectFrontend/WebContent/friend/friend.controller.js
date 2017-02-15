@@ -94,6 +94,7 @@
 						vm.friend= d;
 						getMyFriendRequests();
 						alert("friend Request Accepted")
+						$location.path('/friendrequest');
 						},function(errResponse){
 							console.error('=>FCtrl: Error while sending friend Request ')
 					});
@@ -108,6 +109,7 @@
 						vm.friend= d;
 						getMyFriendRequests();
 						alert("friend Request Rejected")
+						$location.path('/friendrequest');
 						},function(errResponse){
 							console.error('=>FCtrl: Error while sending friend Request ')
 					});

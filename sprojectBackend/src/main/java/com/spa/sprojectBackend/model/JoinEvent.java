@@ -22,7 +22,7 @@ public class JoinEvent {
 	
 	@ManyToOne
 	@JoinColumn(name="userId")
-	private User joinedBy;
+	private User user;
 
 	public long getJoineventId() {
 		return joineventId;
@@ -40,13 +40,15 @@ public class JoinEvent {
 		this.event = event;
 	}
 
-	public User getJoinedBy() {
-		return joinedBy;
+	public User getUser() {
+		return user;
 	}
 
-	public void setJoinedBy(User joinedBy) {
-		joinedBy = joinedBy;
+	public void setUser(User user) {
+		this.user = user;
 	}
+
+	
 	
 	
 	

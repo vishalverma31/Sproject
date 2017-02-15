@@ -60,7 +60,7 @@
          
          function applyForJob(jobId){
         	    console.log("applyForJob")
-        		var currentUser=$rootscope.currentUser;
+        		var currentUser=$rootScope.currentUser;
         		console.log("currentUser's id:"+currentUser.userId)
         		
         		if(typeof currentUser.userId=='undefined'){

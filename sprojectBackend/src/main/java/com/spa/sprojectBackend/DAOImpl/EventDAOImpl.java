@@ -25,11 +25,6 @@ public class EventDAOImpl implements EventDAO{
 	public void addEvent(Event event) {
 		Session session=sessionFactory.getCurrentSession();
 		
-		JoinEvent je= new JoinEvent();
-		je.setEvent(event);
-		je.setJoinedBy(event.getCreatedBy());
-		session.saveOrUpdate(je);
-		
 		session.saveOrUpdate(event);
 		
 	}
@@ -55,22 +50,17 @@ public class EventDAOImpl implements EventDAO{
 
 	public List<JoinEvent> getListofEventsJoined(long userId) {
 		Session session=sessionFactory.getCurrentSession();
-		List<JoinEvent> listjoinedEvent=session.createQuery("from JoinEvent where joinedBy="+userId).getResultList();
+		
+		List<JoinEvent> listjoinedEvent=session.createQuery("from JoinEvent where userId="+userId).getResultList();
+		
 		return listjoinedEvent;
 	}
 
 
-	public void joinEvent(long UserId,long eventId) {
+	public void joinEvent(JoinEvent joinEvent) {
 		Session session=sessionFactory.getCurrentSession();
-		
-		User u=(User)session.createQuery("from User where userId="+UserId).getSingleResult();
-		
-		Event event=(Event)session.createQuery("from Event where eventId="+eventId).getSingleResult();
-		JoinEvent je= new JoinEvent();
-		je.setEvent(event);
-		je.setJoinedBy(u);
-		
-		session.saveOrUpdate(je);
+				
+		session.saveOrUpdate(joinEvent);
 	}
 
 

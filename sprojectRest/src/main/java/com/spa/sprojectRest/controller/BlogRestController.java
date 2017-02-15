@@ -148,13 +148,12 @@ public class BlogRestController {
 		   }
 		 
 	//---------------------------adding Comment on BLOG-------------------------------------
-			@PostMapping(value = "/addComment/")
-		    public ResponseEntity<BlogComment> BlogComment(@RequestBody Blog blog,HttpSession session) 
+			@PostMapping(value = "/addComment/{id}")
+		    public ResponseEntity<BlogComment> BlogComment(@RequestBody BlogComment comment,@PathVariable("id") long id,HttpSession session) 
 			{
 			  long loggedInUserId=(Long)session.getAttribute("loggedInUserId");
 			  
-			  BlogComment comment=new BlogComment();
-			  
+			  comment.setBlog(blogDAO.getBlogByBlogId(id));
 			  comment.setUser(userDAO.getUserByUserId(loggedInUserId));
 			  comment.setTimeComment(new Date());
 			  
