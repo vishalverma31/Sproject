@@ -38,9 +38,9 @@
                );
           }
         
-        function fetchAllBlogComments(blogId) {
+        function fetchAllBlogComments() {
         	console.log("BService: fetchAllBlogComments")
-            return $http.get(BASE_URL+'/blogComment/'+blogId)
+            return $http.get(BASE_URL+'/blogComment/')
               .then(
                       function(response){
                            return response.data;

@@ -18,9 +18,18 @@
         service.Delete = Delete;
         service.logout = logout;
         service.makeAdmin = makeAdmin;
-
+        service.imageUpload=imageUpload;
+        
         return service;
 
+        function imageUpload() {
+            return $http.post(BASE_URL+'/rest/file/upload/')
+            .then(
+            		createSuccess, 
+            	   handleError('UserService: Error getting all users')
+            	 );
+        }
+        
         function GetAll() {
             return $http.get(BASE_URL+'/user/')
             .then(

@@ -164,9 +164,9 @@ public class BlogRestController {
 			
 	//-------------------Retrieve Blog Comments By BlogId--------------------------------------------------------
 		    
-			@GetMapping(value="/blogComment/{blogId}")
+			@GetMapping(value="/blogComment/")
 		    public ResponseEntity<List<BlogComment>> listBlogComments(@PathVariable("blogId") long blogId) {
-		        List<BlogComment> blogComments = blogDAO.commentListByBlogId(blogId);
+		        List<BlogComment> blogComments = blogDAO.commentList();
 		        if(blogComments.isEmpty()){
 		            return new ResponseEntity<List<BlogComment>>(HttpStatus.NO_CONTENT);
 	                 //You may decide to return HttpStatus.NOT_FOUND

@@ -19,8 +19,8 @@
    </form>
   
   <h2>Comments:</h2>
-	  <div ng-repeat="blogComment in vm.allBlogComments" ng-init="vm.fetchAllBlogComments(selectedBlog.blogId);">
-        <p>{{blogComment.user.firstName}}: {{blogComment.blogComment}}</p>
+	  <div ng-repeat="blogComment in vm.allBlogComments">
+        <p ngshow="selectedBlog.blogId==blogComment.blog.blogId">{{blogComment.user.firstName}}: {{blogComment.blogComment}}</p>
 	  </div>
 	    
 </div>

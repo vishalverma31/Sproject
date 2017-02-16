@@ -38,7 +38,7 @@
 
          vm.fetchAllBlogs();
          vm.fetchNewBlogs();
-         
+         vm.fetchAllBlogComments();
          
          function getBlog(id){
         	   console.log(">>BCtrl: Getting Blog:"+id)
@@ -113,9 +113,9 @@
   	    	            );
          }
          
-         function fetchAllBlogComments(blogId){
+         function fetchAllBlogComments(){
         	 console.log(">>BCtrl: fetching All Blog Comments")
-        	  	   BlogService.fetchAllBlogComments(blogId)
+        	  	   BlogService.fetchAllBlogComments()
         	    	       .then(
         	    	                      function(d) {
         	    	                          console.log('BCtrl: inside fetchAllBlogComments function')

@@ -1,6 +1,13 @@
 <div id="divGrey">
 <h1>Hi {{vm.user.firstName}}!</h1>
 <p>You're logged in!!</p>
+<div class="row">
+<div class="panel panel-primary  col-sm-4">
+		<br>
+        <div class="panel-heading">Profile Picture</div>
+        <div class="panel-body"><img ng-src="{{link}}" class="img-responsive" style="width:150px; height:200px" alt="Image"></div>
+</div>
+<div class="col-sm-8">        
 <h3>All registered users:</h3>
 <ul>
     <li ng-repeat="user in vm.allUsers">
@@ -8,7 +15,10 @@
         - <a ng-show="vm.user.role=='admin'" ng-click="vm.deleteUser(user.userId)">Delete</a>
     </li>
 </ul>
-<p>&nbsp;</p>
+</div>
+</div>
+<br>
+<div>
 <p><a href="#!/createblog" class="btn btn-primary">Create Blog</a>
    <a href="#!/updateProfile" class="btn btn-primary">Update your Profile</a>
    <a href="#!/postjob" ng-show="vm.user.role=='admin'" class="btn btn-primary">Post A Job</a>
@@ -16,4 +26,5 @@
 <p><a href="#!/listnewblogs" ng-show="vm.user.role=='admin'" class="btn btn-primary">List of New Blogs</a>
    <a href="#!/usermgnt" ng-show="vm.user.role=='admin'" class="btn btn-primary">User Management</a></p>
 <p><a href="#" ng-click="vm.logout()" class="btn btn-primary">Logout</a></p>
+</div>
 </div>

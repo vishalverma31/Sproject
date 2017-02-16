@@ -17,6 +17,7 @@
         vm.makeAdmin=makeAdmin;
         vm.Update=Update;
         vm.loadCurrentUser=loadCurrentUser;
+        vm.imageUpload=imageUpload;
         
         initController();
 
@@ -25,6 +26,20 @@
             loadAllUsers();
         }
         
+        function imageUpload() {
+             
+            UserService.imageUpload()
+                .then(function (response) {
+                    if (response.success) {
+                        $location.path('/updateProfile');
+                      } 
+                    else {
+                        FlashService.Error(response.message);
+                        vm.dataLoading = false;
+                    	}
+                  	}
+                );
+        }
 
         function loadCurrentUser() {
             UserService.GetByUsername($rootScope.currentUser.username)
@@ -61,8 +76,8 @@
             UserService.Update(user)
                 .then(function (response) {
                     if (response.success) {
-                        FlashService.Success('Update Successful', true);
-                        $location.path('/');
+                        
+                        $location.path('/updateProfile');
                       } 
                     else {
                         FlashService.Error(response.message);

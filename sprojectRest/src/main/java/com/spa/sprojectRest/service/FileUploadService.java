@@ -5,13 +5,14 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriBuilder;
 
 import com.sun.jersey.core.header.FormDataContentDisposition;
 import com.sun.jersey.multipart.FormDataParam;
@@ -48,7 +49,9 @@ public class FileUploadService {
 			ioe.printStackTrace();
 		}
 		
-		return Response.status(200).entity("file uploaded to "+uploadLocation).build();
+		URI url=UriBuilder.fromUri("localhost:9086/sprojectFrontend/#!/").build();
+		
+		return Response.seeOther(url).build();
 	}
 	
 
